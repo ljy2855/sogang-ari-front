@@ -37,7 +37,7 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
               <div className={styles.input_area}>
                 <Input
                   placeholder="ex) 20171630"
-                  autoComplete="username"
+                  autoComplete="email"
                   name="studentId"
                   className={styles.input}
                   ref={studentIdRef}
