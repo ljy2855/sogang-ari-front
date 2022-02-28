@@ -127,21 +127,19 @@ function Main() {
         <Col span={24}>
           <div className={styles.container}>
             {isInput ? (
-              <div>
-                <div className={styles.clubs}>
-                  {clubs.map((club: ClubType) => (
-                    <Club
-                      key={club.id}
-                      id={club.id}
-                      title={club.title}
-                      year={club.year}
-                      rating={club.rating}
-                      coverImg={club.medium_cover_image}
-                      summary={club.summary}
-                      genres={club.genres}
-                    />
-                  ))}
-                </div>
+              <div className={styles.clubs}>
+                {clubs.map((club: ClubType) => (
+                  <Club
+                    key={club.id}
+                    id={club.id}
+                    title={club.title}
+                    year={club.year}
+                    rating={club.rating}
+                    medium_cover_image={club.medium_cover_image}
+                    summary={club.summary}
+                    genres={club.genres}
+                  />
+                ))}
               </div>
             ) : null}
           </div>

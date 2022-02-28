@@ -16,19 +16,10 @@
 
 .club__img {
   position: relative;
-  top: -50px;
+  top: -45 px;
   max-width: 150px;
   width: 100%;
-  margin-right: 30px;
-  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
-    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
-}
-
-.club__img2 {
-  position: relative;
-  max-width: 250px;
-  width: 100%;
-  margin-right: 40px;
+  margin-right: 0px;
   box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
     0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
 }
@@ -80,6 +71,15 @@
 ul {
   display: inline-block;
   margin-right: 10px;
+}
+
+.club__img2 {
+  position: relative;
+  max-width: 250px;
+  width: 100%;
+  margin-right: 0px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
 }
 
 .club__detail {

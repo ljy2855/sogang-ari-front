@@ -15,15 +15,20 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  /* background: transparent;
+  background-color: transparent; */
 }
 
 .clubs {
+  /* background: transparent;
+  background-color: transparent; */
   display: grid;
   grid-template-columns: repeat(2, minmax(400px, 1fr));
   grid-gap: 100px;
   padding: 50px;
   width: 80%;
   padding-top: 70px;
+  justify-content: center;
 }
 
 /* a tag */
@@ -45,10 +50,11 @@ input {
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
   font-size: 1.3rem;
-  color: #fff;
+  color: black;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
+  font-weight: bold;
 }
 input:focus {
   padding-bottom: 6px;
