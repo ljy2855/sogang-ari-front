@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import create from "./redux/create";
+import "antd/dist/antd.min.css";
 
 const store = create();
 
