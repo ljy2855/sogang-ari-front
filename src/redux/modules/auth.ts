@@ -32,7 +32,7 @@ export const { success, pending, fail } = createActions(
   options
 );
 
-const reducer = handleActions<AuthState, string>(
+const reducer = handleActions<AuthState, any>(
   {
     PENDING: (state) => ({
       ...state,
@@ -41,13 +41,13 @@ const reducer = handleActions<AuthState, string>(
     }),
     SUCCESS: (state, action) => ({
       ...state,
-      token: action.payload,
-      loading: true,
+      token: action.payload.token,
+      loading: false,
       error: null,
     }),
-    FAIL: (state, action: any) => ({
+    FAIL: (state, action) => ({
       ...state,
-      loading: true,
+      loading: false,
       error: action.payload,
     }),
   },

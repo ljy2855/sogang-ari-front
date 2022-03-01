@@ -1,16 +1,32 @@
-import { Button, Col, Input, Row } from "antd";
-import React from "react";
-import { useRef } from "react";
+import { Button, Col, Input, message, Row } from "antd";
+import React, { useEffect } from "react";
 import { LoginReqType } from "../types";
 import styles from "./Signin.module.css";
 
 interface SigninProps {
-  login: (reqData: LoginReqType) => void;
+  loading: boolean;
+  error: Error | null;
+  login: ({ email, password }: LoginReqType) => void;
 }
 
-const Signin: React.FC<SigninProps> = ({ login }) => {
-  const emailRef = useRef<Input>(null);
-  const passwordRef = useRef<Input>(null);
+const Signin: React.FC<SigninProps> = ({ loading, login, error }) => {
+  const emailRef = React.useRef<Input>(null);
+  const passwordRef = React.useRef<Input>(null);
+
+  useEffect(() => {
+    if (error === null) return;
+
+    switch (error.message) {
+      case "USER_NOT_EXIST":
+        message.error("User not exist");
+        break;
+      case "PASSWORD_NOT_MATCH":
+        message.error("Wrong password");
+        break;
+      default:
+        message.error("Unknown error occured");
+    }
+  }, [error]);
 
   function click() {
     const email = emailRef.current!.state.value;
@@ -70,7 +86,12 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
                 />
               </div>
               <div className={styles.button_area}>
-                <Button size="large" className={styles.button} onClick={click}>
+                <Button
+                  size="large"
+                  loading={loading}
+                  className={styles.button}
+                  onClick={click}
+                >
                   Sign In
                 </Button>
               </div>
