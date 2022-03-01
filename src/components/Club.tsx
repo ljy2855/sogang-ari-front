@@ -29,7 +29,7 @@ function Club(club: ClubType) {
         </p>
         <Row>
           <Col span={12}>
-            <a href={`${process.env.PUBLIC_URL}/club/${club.id}`}>Details</a>
+            <a href={`${document.location.href}club/${club.id}`}>Details</a>
           </Col>
           <Col span={12}>
             <Checkbox onChange={onChange}>즐겨찾기</Checkbox>

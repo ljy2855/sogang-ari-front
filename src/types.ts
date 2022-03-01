@@ -3,14 +3,14 @@ import { AnyAction, Reducer } from "redux";
 
 export interface ClubDetailType {
   id: number;
-  download: number;
-  like: number;
+  download_count: number;
+  like_count: number;
   runtime: number;
   title: string;
   year: number;
   rating: number;
-  coverImg: string;
-  summary: string;
+  large_cover_image: string;
+  description_full: string;
   genres: string[];
 }
 

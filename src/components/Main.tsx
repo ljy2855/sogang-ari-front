@@ -4,6 +4,7 @@ import styles from "./Main.module.css";
 import React from "react";
 import { ClubType } from "../types";
 import { Col, Row } from "antd";
+import Login from "./Login.module";
 
 function Main() {
   const [isInput, setisInput] = useState(false);
@@ -30,7 +31,7 @@ function Main() {
         `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.5&sort_by=year`
       )
     ).json();
-    console.log(json);
+    // console.log(json);
     setClubs(json.data.movies);
   };
 
@@ -42,17 +43,7 @@ function Main() {
   // console.log(clubs);
   return (
     <div className={styles.background}>
-      <Row>
-        <Col span={24}>
-          <Row>
-            <Col span={20}> </Col>
-            <Col span={4}>
-              {" "}
-              <a href={`${document.location.href}signin`}>로그인/회원가입</a>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+      <Login />
       <Row align="middle" className={styles.main_row}>
         {/* 홈페이지 제목 */}
         <Col span={24}>
