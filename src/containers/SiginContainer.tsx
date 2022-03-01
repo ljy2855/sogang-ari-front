@@ -16,8 +16,8 @@ const SigninContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const login = useCallback(
-    ({ email, password }: LoginReqType) => {
-      dispatch(loginSaga({ email, password }));
+    ({ studentId, password }: LoginReqType) => {
+      dispatch(loginSaga({ studentId, password }));
     },
     [dispatch]
   );

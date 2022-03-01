@@ -60,8 +60,8 @@ export default reducer;
 // saga
 export const { login, logout } = createActions(
   {
-    LOGIN: ({ email, password }: LoginReqType) => ({
-      email,
+    LOGIN: ({ studentId, password }: LoginReqType) => ({
+      studentId,
       password,
     }),
   },

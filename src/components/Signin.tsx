@@ -6,16 +6,16 @@ import styles from "./Signin.module.css";
 interface SigninProps {
   loading: boolean;
   error: Error | null;
-  login: ({ email, password }: LoginReqType) => void;
+  login: ({ studentId, password }: LoginReqType) => void;
 }
 
 const Signin: React.FC<SigninProps> = ({ loading, login, error }) => {
-  const emailRef = React.useRef<Input>(null);
+  const studentIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
 
   useEffect(() => {
     if (error === null) return;
-
+    console.log("error:", error);
     switch (error.message) {
       case "USER_NOT_EXIST":
         message.error("User not exist");
@@ -29,9 +29,9 @@ const Signin: React.FC<SigninProps> = ({ loading, login, error }) => {
   }, [error]);
 
   function click() {
-    const email = emailRef.current!.state.value;
+    const studentId = studentIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
-    login({ email, password });
+    login({ studentId, password });
   }
 
   const keyPress = (e: React.KeyboardEvent) => {
@@ -58,17 +58,17 @@ const Signin: React.FC<SigninProps> = ({ loading, login, error }) => {
                 Please Note Your Opinion
               </div>
               <div className={styles.signin_underline} />
-              <div className={styles.email_title}>
-                email
+              <div className={styles.studentId_title}>
+                studentId
                 <span className={styles.required}> *</span>
               </div>
               <div className={styles.input_area}>
                 <Input
-                  placeholder="email"
-                  autoComplete="email"
-                  name="email"
+                  placeholder="studentId"
+                  autoComplete="studentId"
+                  name="studentId"
                   className={styles.input}
-                  ref={emailRef}
+                  ref={studentIdRef}
                   onKeyPress={keyPress}
                 />
               </div>

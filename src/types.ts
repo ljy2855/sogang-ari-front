@@ -22,6 +22,6 @@ export interface ClubType {
 }
 
 export type LoginReqType = {
-  email: string;
+  studentId: string;
   password: string;
 };
