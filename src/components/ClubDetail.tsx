@@ -2,6 +2,7 @@ import { ClubDetailType } from "../types";
 import styles from "./Club.module.css";
 import Login from "./Login.module";
 import { Row, Col } from "antd";
+import Favorite from "./Favorite.module";
 
 function ClubDetail(clubDetail: ClubDetailType) {
   console.log("ClubDetail!");
@@ -51,6 +52,7 @@ function ClubDetail(clubDetail: ClubDetailType) {
                   <p>{clubDetail.like_count}</p>
                 </ul>
               </div>
+              <Favorite />
             </div>
           </div>
         </Col>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { LoginReqType } from "../types";
 
-const USER_API_URL = "http://3.35.139.164:8080/api/user/login";
+const USER_API_URL = "https://api.marktube.tv/v1/me";
 
 export default class UserService {
   public static async login(reqData: LoginReqType): Promise<string> {

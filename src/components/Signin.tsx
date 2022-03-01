@@ -70,7 +70,7 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
   function click() {
     const studentId = studentIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
-
+    console.log("MyBooks");
     login({ studentId, password });
   }
 };

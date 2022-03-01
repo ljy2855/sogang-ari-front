@@ -5,6 +5,22 @@ import React from "react";
 import { ClubType } from "../types";
 import { Col, Row } from "antd";
 import Login from "./Login.module";
+// import {
+//   Link,
+//   Element,
+//   Events,
+//   animateScroll as scroll,
+//   scroller,
+// } from "react-scroll";
+// import {
+//   Link,
+//   Button,
+//   Element,
+//   Events,
+//   animateScroll as scroll,
+//   scrollSpy,
+//   scroller,
+// } from "react-scroll";
 
 function Main() {
   const [isInput, setisInput] = useState(false);
@@ -24,6 +40,16 @@ function Main() {
   const onClick = () => {
     setRating(tmp);
     setisInput(true);
+    //   $(function () {
+    //     $("a[href*=#]").on("click", function (e) {
+    //       e.preventDefault();
+    //       $("html, body").animate(
+    //         { scrollTop: $($(this).attr("href")).offset().top },
+    //         500,
+    //         "linear"
+    //       );
+    //     });
+    //   });
   };
   const getClubs = async () => {
     const json = await (
@@ -75,24 +101,36 @@ function Main() {
             <div>
               <br /> <br /> <br />
               <div className={styles.container}>
-                <button className={styles.btn_category} onClick={onClick}>
-                  봉사
-                </button>
-                <button className={styles.btn_category} onClick={onClick}>
-                  사회교양
-                </button>
-                <button className={styles.btn_category} onClick={onClick}>
-                  종교
-                </button>
-                <button className={styles.btn_category} onClick={onClick}>
-                  연행예술
-                </button>
-                <button className={styles.btn_category} onClick={onClick}>
-                  체육
-                </button>
-                <button className={styles.btn_category} onClick={onClick}>
-                  학술
-                </button>
+                <a href="#section02">
+                  <button className={styles.btn_category} onClick={onClick}>
+                    봉사
+                  </button>
+                </a>
+                <a href="#section02">
+                  <button className={styles.btn_category} onClick={onClick}>
+                    사회교양
+                  </button>
+                </a>
+                <a href="#section02">
+                  <button className={styles.btn_category} onClick={onClick}>
+                    종교
+                  </button>
+                </a>
+                <a href="#section02">
+                  <button className={styles.btn_category} onClick={onClick}>
+                    연행예술
+                  </button>
+                </a>
+                <a href="#section02">
+                  <button className={styles.btn_category} onClick={onClick}>
+                    체육
+                  </button>
+                </a>
+                <a href="#section02">
+                  <button className={styles.btn_category} onClick={onClick}>
+                    학술
+                  </button>
+                </a>
               </div>
               <div className={styles.container}>
                 <br /> <br /> <br />
@@ -106,35 +144,39 @@ function Main() {
                   placeholder="이름으로 검색"
                 />
 
-                <button className={styles.btn_go} onClick={onClick}>
-                  GO
-                </button>
+                <a href="#section02">
+                  <button className={styles.btn_go} onClick={onClick}>
+                    GO
+                  </button>
+                </a>
               </div>
             </div>
           </div>
         </Col>
 
         {/* 검색 결과 */}
-        <Col span={24}>
-          <div className={styles.container}>
-            {isInput ? (
-              <div className={styles.clubs}>
-                {clubs.map((club: ClubType) => (
-                  <Club
-                    key={club.id}
-                    id={club.id}
-                    title={club.title}
-                    year={club.year}
-                    rating={club.rating}
-                    medium_cover_image={club.medium_cover_image}
-                    summary={club.summary}
-                    genres={club.genres}
-                  />
-                ))}
-              </div>
-            ) : null}
-          </div>
-        </Col>
+        <section id="section02">
+          <Col span={24}>
+            <div className={styles.container}>
+              {isInput ? (
+                <div className={styles.clubs}>
+                  {clubs.map((club: ClubType) => (
+                    <Club
+                      key={club.id}
+                      id={club.id}
+                      title={club.title}
+                      year={club.year}
+                      rating={club.rating}
+                      medium_cover_image={club.medium_cover_image}
+                      summary={club.summary}
+                      genres={club.genres}
+                    />
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          </Col>
+        </section>
       </Row>
     </div>
   );

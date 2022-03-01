@@ -1,11 +1,7 @@
 import { ClubType } from "../types";
 import styles from "./Club.module.css";
-import { Col, Row, Checkbox } from "antd";
-import { CheckboxChangeEvent } from "antd/lib/checkbox";
-
-function onChange(e: CheckboxChangeEvent) {
-  console.log(`checked = ${e.target.checked}`);
-}
+import { Col, Row } from "antd";
+import Favorite from "./Favorite.module";
 
 function Club(club: ClubType) {
   return (
@@ -31,9 +27,7 @@ function Club(club: ClubType) {
           <Col span={12}>
             <a href={`${document.location.href}club/${club.id}`}>Details</a>
           </Col>
-          <Col span={12}>
-            <Checkbox onChange={onChange}>즐겨찾기</Checkbox>
-          </Col>
+          <Favorite />
         </Row>
       </div>
     </div>
