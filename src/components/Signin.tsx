@@ -9,7 +9,7 @@ interface SigninProps {
 }
 
 const Signin: React.FC<SigninProps> = ({ login }) => {
-  const studentIdRef = useRef<Input>(null);
+  const emailRef = useRef<Input>(null);
   const passwordRef = useRef<Input>(null);
 
   return (
@@ -19,7 +19,7 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
           <Row className={styles.signin_contents}>
             <Col span={12}>
               <img
-                src="/bg_signin.png"
+                src="/images/bg_signin.png"
                 alt="Signin"
                 className={styles.signin_bg}
               />
@@ -30,17 +30,17 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
                 Please Note Your Opinion
               </div>
               <div className={styles.signin_underline} />
-              <div className={styles.studentId_title}>
-                studentId
+              <div className={styles.email_title}>
+                email
                 <span className={styles.required}> *</span>
               </div>
               <div className={styles.input_area}>
                 <Input
-                  placeholder="ex) 20171630"
+                  placeholder="email"
                   autoComplete="email"
-                  name="studentId"
+                  name="email"
                   className={styles.input}
-                  ref={studentIdRef}
+                  ref={emailRef}
                 />
               </div>
               <div className={styles.password_title}>
@@ -68,10 +68,10 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
   );
 
   function click() {
-    const studentId = studentIdRef.current!.state.value;
+    const email = emailRef.current!.state.value;
     const password = passwordRef.current!.state.value;
 
-    login({ studentId, password });
+    login({ email, password });
   }
 };
 

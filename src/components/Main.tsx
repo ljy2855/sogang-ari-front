@@ -135,7 +135,7 @@ function Main() {
                     title={club.title}
                     year={club.year}
                     rating={club.rating}
-                    coverImg={club.medium_cover_image}
+                    medium_cover_image={club.medium_cover_image}
                     summary={club.summary}
                     genres={club.genres}
                   />

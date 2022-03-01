@@ -1,20 +1,26 @@
+import { ConnectedRouter } from "connected-react-router";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ErrorBoundary from "react-error-boundary";
+import { Route, Switch } from "react-router-dom";
+import history from "./history";
 import Detail from "./pages/Detail";
+import Error from "./pages/Error";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Signin from "./pages/Signin";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path={"/signin"} component={Signin} />
-        <Route exact path={"/club/:id"} component={Detail} />
-        <Route exact path={"/"} component={Home} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
+    <ErrorBoundary FallbackComponent={Error}>
+      <ConnectedRouter history={history}>
+        <Switch>
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/club/:id" component={Detail} />
+          <Route exact path="/" component={Home} />
+          <Route component={NotFound} />
+        </Switch>
+      </ConnectedRouter>
+    </ErrorBoundary>
   );
 }
 

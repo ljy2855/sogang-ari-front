@@ -11,7 +11,7 @@ const initialState: AuthState = {
   error: null,
 };
 
-const prefix = "my-books/auth";
+const prefix = "sogang-ari/auth";
 
 export const { pending, success, fail } = createActions(
   "PENDING",
@@ -54,7 +54,7 @@ function* loginSaga(action: Action<LoginReqType>) {
     TokenService.set(token);
     yield put(success(token));
     yield put(push("/"));
-  } catch (error: any) {
+  } catch (error) {
     yield put(fail(new Error(error?.response?.data?.error || "UNKNOWN_ERROR")));
   }
 }

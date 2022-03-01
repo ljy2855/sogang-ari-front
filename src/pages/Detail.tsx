@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ClubDetail from "../components/ClubDetail";
+// import ClubDetail from "../components/ClubDetail";
 import { ClubDetailType } from "../types";
+import React from "react";
 
 type idParams = {
   id: string;
@@ -36,7 +37,7 @@ const Detail: React.FC = () => {
   }, []);
   return (
     <div>
-      {
+      {/* {
         loading ? <h3>Loading...</h3> : null
         // <ClubDetail
         //   key={club.id}
@@ -49,7 +50,7 @@ const Detail: React.FC = () => {
         //   runtime={club.runtime}
         //   coverImg={club.large_cover_image}
         // />
-      }
+      } */}
     </div>
   );
 };

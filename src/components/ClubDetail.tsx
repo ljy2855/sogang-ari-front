@@ -1,5 +1,6 @@
 import { ClubDetailType } from "../types";
 import styles from "./Club.module.css";
+import React from "react";
 
 function ClubDetail(clubDetail: ClubDetailType) {
   return (

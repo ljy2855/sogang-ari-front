@@ -1,5 +1,3 @@
-/* Signin.module.css */
-
 .signin_row {
   height: 100vh;
 }
@@ -41,7 +39,7 @@
   width: 100%;
 }
 
-.studentId_title {
+.email_title {
   font-family: Roboto;
   font-size: 12px;
   font-weight: bold;
