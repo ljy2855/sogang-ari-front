@@ -12,6 +12,18 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
   const emailRef = useRef<Input>(null);
   const passwordRef = useRef<Input>(null);
 
+  function click() {
+    const email = emailRef.current!.state.value;
+    const password = passwordRef.current!.state.value;
+    login({ email, password });
+  }
+
+  const keyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      click();
+    }
+  };
+
   return (
     <form>
       <Row align="middle" className={styles.signin_row}>
@@ -41,6 +53,7 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
                   name="email"
                   className={styles.input}
                   ref={emailRef}
+                  onKeyPress={keyPress}
                 />
               </div>
               <div className={styles.password_title}>
@@ -53,6 +66,7 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
                   autoComplete="current-password"
                   className={styles.input}
                   ref={passwordRef}
+                  onKeyPress={keyPress}
                 />
               </div>
               <div className={styles.button_area}>
@@ -66,13 +80,6 @@ const Signin: React.FC<SigninProps> = ({ login }) => {
       </Row>
     </form>
   );
-
-  function click() {
-    const email = emailRef.current!.state.value;
-    const password = passwordRef.current!.state.value;
-
-    login({ email, password });
-  }
 };
 
 export default Signin;
