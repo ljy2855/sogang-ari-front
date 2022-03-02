@@ -10,54 +10,70 @@ function ClubDetail(clubDetail: ClubDetailType) {
   return (
     <div>
       <LoginButton />
-      <br />
-      <br />
-      <br />
       <Row align="middle" className={styles.main_row}>
-        <Col span={4}></Col>
-        <Col span={16}>
-          <div className={styles.club}>
-            <img
-              src={clubDetail.large_cover_image}
-              alt="Poster"
-              className={styles.club__img}
-            />
-            <div>
-              <h1 className={styles.club__title}>{clubDetail.title}</h1>
-              <p className={styles.club__rating}>
-                rating : {clubDetail.rating} / 10.0
-              </p>
-              <p className={styles.club__summary}>
-                {clubDetail.description_full.length < 2
-                  ? "No description."
-                  : clubDetail.description_full}
-              </p>
-              <hr />
-              <div className={styles.club__detail}>
-                <ul>
-                  <h4>Genres</h4>
-                  {clubDetail.genres.map((genre: string) => (
-                    <li>{genre}</li>
-                  ))}
-                </ul>
-                <ul>
-                  <h4>Runtime</h4>
-                  <p>{clubDetail.runtime < 1 ? "?" : clubDetail.runtime} min</p>
-                </ul>
-                <ul>
-                  <h4>Downloads</h4>
-                  <p>{clubDetail.download_count}</p>
-                </ul>
-                <ul>
-                  <h4>Likes </h4>
-                  <p>{clubDetail.like_count}</p>
-                </ul>
+        <br />
+        <br />
+        <Row>
+          <Col span={24}>
+            <a href="localhost:3000">
+              <div className={styles.main_title}>
+                <strong>서강아리</strong>{" "}
+                {<span className={styles.word}> !</span>}
               </div>
-              <Favorite />
+            </a>
+            <br />
+          </Col>
+        </Row>
+        <br />
+
+        <Row>
+          <Col span={4}></Col>
+          <Col span={16}>
+            <div className={styles.club}>
+              <img
+                src={clubDetail.large_cover_image}
+                alt="Poster"
+                className={styles.club__img}
+              />
+              <div>
+                <h1 className={styles.club__title}>{clubDetail.title}</h1>
+                <p className={styles.club__rating}>
+                  rating : {clubDetail.rating} / 10.0
+                </p>
+                <p className={styles.club__summary}>
+                  {clubDetail.description_full.length < 2
+                    ? "No description."
+                    : clubDetail.description_full}
+                </p>
+                <hr />
+                <div className={styles.club__detail}>
+                  <ul>
+                    <h4>Genres</h4>
+                    {clubDetail.genres.map((genre: string) => (
+                      <li>{genre}</li>
+                    ))}
+                  </ul>
+                  <ul>
+                    <h4>Runtime</h4>
+                    <p>
+                      {clubDetail.runtime < 1 ? "?" : clubDetail.runtime} min
+                    </p>
+                  </ul>
+                  <ul>
+                    <h4>Downloads</h4>
+                    <p>{clubDetail.download_count}</p>
+                  </ul>
+                  <ul>
+                    <h4>Likes </h4>
+                    <p>{clubDetail.like_count}</p>
+                  </ul>
+                </div>
+                <Favorite />
+              </div>
             </div>
-          </div>
-        </Col>
-        <Col span={4}></Col>
+          </Col>
+          <Col span={4}></Col>
+        </Row>
       </Row>
     </div>
   );

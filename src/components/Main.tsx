@@ -73,14 +73,16 @@ function Main() {
       <Row align="middle" className={styles.main_row}>
         {/* 홈페이지 제목 */}
         <Col span={24}>
-          <div className={styles.main_title}>
-            <strong>서강아리</strong> {<span className={styles.word}> !</span>}
-          </div>
+          <a href="localhost:3000">
+            <div className={styles.main_title}>
+              <strong>서강아리</strong>{" "}
+              {<span className={styles.word}> !</span>}
+            </div>
+          </a>
           <br />
         </Col>
         {/* 간략한 소개 */}
         <Col span={24}>
-          <br />
           <div className={styles.main_subtitle}>
             환영합니다, <strong>서강</strong>대학교 동<strong>아리</strong>
             플랫폼입니다
@@ -89,74 +91,76 @@ function Main() {
               @Team_Luwak
             </a>
             <br />
-            <br />
             동아리 정보를 손쉽게 받아가세요 :)
-            <br />
           </div>
         </Col>
+
         {/* 필터 & 검색 */}
 
         <Col span={24}>
-          <div>
+          <section id="section01">
             <div>
-              <br /> <br /> <br />
-              <div className={styles.container}>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
-                    봉사
-                  </button>
-                </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
-                    사회교양
-                  </button>
-                </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
-                    종교
-                  </button>
-                </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
-                    연행예술
-                  </button>
-                </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
-                    체육
-                  </button>
-                </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
-                    학술
-                  </button>
-                </a>
-              </div>
-              <div className={styles.container}>
-                <br /> <br /> <br />
-              </div>
-              <div className={styles.container}>
-                <input
-                  type="input"
-                  value={tmp}
-                  onChange={handleChange}
-                  onKeyPress={handleKeyPress}
-                  placeholder="이름으로 검색"
-                />
+              <div>
+                <br />
+                <div className={styles.container}>
+                  <a href="#section02">
+                    <button className={styles.btn_category} onClick={onClick}>
+                      봉사
+                    </button>
+                  </a>
+                  <a href="#section02">
+                    <button className={styles.btn_category} onClick={onClick}>
+                      사회교양
+                    </button>
+                  </a>
+                  <a href="#section02">
+                    <button className={styles.btn_category} onClick={onClick}>
+                      종교
+                    </button>
+                  </a>
+                  <a href="#section02">
+                    <button className={styles.btn_category} onClick={onClick}>
+                      연행예술
+                    </button>
+                  </a>
+                  <a href="#section02">
+                    <button className={styles.btn_category} onClick={onClick}>
+                      체육
+                    </button>
+                  </a>
+                  <a href="#section02">
+                    <button className={styles.btn_category} onClick={onClick}>
+                      학술
+                    </button>
+                  </a>
+                  <br />
+                  <br />
+                  <br />
+                </div>
+                <div className={styles.container}>
+                  <input
+                    type="input"
+                    value={tmp}
+                    onChange={handleChange}
+                    onKeyPress={handleKeyPress}
+                    placeholder="이름으로 검색"
+                  />
 
-                <a href="#section02">
-                  <button className={styles.btn_go} onClick={onClick}>
-                    GO
-                  </button>
-                </a>
+                  <a href="#section02">
+                    <button className={styles.btn_go} onClick={onClick}>
+                      GO
+                    </button>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          </section>
         </Col>
 
         {/* 검색 결과 */}
-        <section id="section02">
-          <Col span={24}>
+
+        <Col span={24}>
+          <section id="section02">
             <div className={styles.container}>
               {isInput ? (
                 <div className={styles.clubs}>
@@ -173,10 +177,42 @@ function Main() {
                     />
                   ))}
                 </div>
-              ) : null}
+              ) : (
+                <div>
+                  <Row>
+                    <Col span={24}></Col>
+                  </Row>
+                </div>
+              )}
             </div>
-          </Col>
-        </section>
+          </section>
+        </Col>
+        <Col span={24}>
+          <section id="section03">
+            <div className={styles.container}>
+              <a href="http://release.sogang.ac.kr/PpeonPpeon/home.php">
+                <button
+                  className={styles.btn_release}
+                  onClick={onClick}
+                ></button>
+              </a>
+              <a href="http://sogang-sincheong.com/">
+                <button
+                  className={styles.btn_sincheong}
+                  onClick={onClick}
+                ></button>
+              </a>
+            </div>
+            {/* <div className={styles.container}>
+              <a href="http://release.sogang.ac.kr/PpeonPpeon/home.php">
+                &nbsp;&nbsp;Ppeon Ppeon&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
+              <a href="http://sogang-sincheong.com/">
+                &nbsp;&nbsp;&nbsp;SogangSincheong
+              </a>
+            </div> */}
+          </section>
+        </Col>
       </Row>
     </div>
   );
@@ -188,5 +224,11 @@ function Main() {
 /* <a href="https://www.sogang.ac.kr/campus/b_club03.html">
   <div className={styles.bg}></div>
 </a>; */
+
+// <a href="#section01">
+//   <button className={styles.btn_go} onClick={onClick}>
+//     UP
+//   </button>
+// </a>;
 
 export default Main;
