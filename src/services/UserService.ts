@@ -1,17 +1,19 @@
 import axios from "axios";
-import { LoginReqType } from "../types";
+import { LoginReqType, TokenType } from "../types";
 
-const USER_API_URL = "http://3.39.25.14:8080/api/login";
+// const USER_API_URL = "https://api.marktube.tv/v1/me";
+const USER_LOGIN_API_URL = "api/login";
+const USER_LOGOUT_API_URL = "api/logout";
 
 export default class UserService {
-  public static async login(reqData: LoginReqType): Promise<string> {
-    const response = await axios.post(USER_API_URL, reqData);
-    console.log("resposns!!!!!", response);
-    return response.data.token;
+  public static async login(reqData: LoginReqType): Promise<TokenType> {
+    const response = await axios.post(USER_LOGIN_API_URL, reqData);
+    console.log("login resposns!!!!!", response);
+    const { accessToken, refreshToken } = response.data.data;
+    return { accessToken, refreshToken };
   }
-  public static async logout(token: string): Promise<void> {
-    await axios.delete(USER_API_URL, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+  public static async logout(reqData: TokenType): Promise<void> {
+    console.log("logout reqData!!!!!", reqData);
+    await axios.post(USER_LOGOUT_API_URL, reqData);
   }
 }

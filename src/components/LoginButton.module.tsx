@@ -3,12 +3,12 @@ import styles from "./LoginButton.module.css";
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { logout as logoutSaga } from "../redux/modules/auth";
-import useToken from "../hooks/useToken";
+import useAccessToken from "../hooks/useAccessToken";
 import { useState } from "react";
 
 function LoginButton() {
   const dispatch = useDispatch();
-  const [token, setToken] = useState<string | null>(useToken());
+  const [token, setToken] = useState<string | null>(useAccessToken());
 
   if (token !== null) {
   }

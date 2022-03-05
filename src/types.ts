@@ -21,7 +21,27 @@ export interface ClubType {
   genres: string[];
 }
 
+export interface ClubResType {
+  name: string;
+  introduction: string;
+  url: string;
+  section: string;
+  detail: string;
+  location: string;
+  recruiting: boolean;
+}
+
+export interface TokenType {
+  accessToken: string;
+  refreshToken: string;
+}
+
 export type LoginReqType = {
   studentId: string;
   password: string;
 };
+
+export interface LoginResType {
+  accessToken: string;
+  refreshToken: string;
+}
