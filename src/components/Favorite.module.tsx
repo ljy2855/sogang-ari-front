@@ -1,15 +1,14 @@
-import { CheckboxChangeEvent } from "antd/lib/checkbox";
-import { Col, Checkbox } from "antd";
+import { Col } from "antd";
 import React from "react";
+import { StarTwoTone } from "@ant-design/icons";
 
-function onChange(e: CheckboxChangeEvent) {
-  console.log(`checked = ${e.target.checked}`);
-}
-
+function click() {}
 function favorite() {
   return (
     <Col span={12}>
-      <Checkbox onChange={onChange}>즐겨찾기</Checkbox>
+      <button onClick={click}>
+        <StarTwoTone style={{ color: "yellow" }} />
+      </button>
     </Col>
   );
 }

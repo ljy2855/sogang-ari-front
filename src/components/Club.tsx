@@ -1,29 +1,38 @@
-import { ClubType } from "../types";
+import { ClubResType } from "../types";
 import styles from "./Club.module.css";
 import { Col, Row } from "antd";
 import Favorite from "./Favorite.module";
 import React from "react";
 
-function Club(club: ClubType) {
+function Club(club: ClubResType) {
   return (
     <div className={styles.club}>
       <img
-        src={club.medium_cover_image}
+        src="/images/sogang_bg-removebg.png"
         alt="Poster"
         className={styles.club__img}
       />
       <div>
-        <h2 className={styles.club__title}>{club.title}</h2>
+        <h2 className={styles.club__title}>{club.name}</h2>
         <h5 className={styles.club__year}>
-          {club.year} ({club.rating} / 10.0)
+          {club.section} (recruiting:{club.recruiting})
         </h5>
+        <p className={styles.club__summary}>{club.introduction}</p>
         <p className={styles.club__summary}>
-          {club.summary.length < 10
+          {club.detail.length < 10
             ? "No description."
-            : club.summary.length > 75
-            ? `${club.summary.slice(0, 75)}...`
-            : club.summary}
+            : club.detail.length > 75
+            ? `${club.detail.slice(0, 75)}...`
+            : club.detail}
         </p>
+        <a
+          className={styles.club__summary}
+          href={club.url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {club.url}
+        </a>
         <Row>
           <Col span={12}>
             <a href={`/club/${club.id}`}>Details</a>

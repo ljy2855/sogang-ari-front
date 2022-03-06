@@ -4,22 +4,14 @@ import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { logout as logoutSaga } from "../redux/modules/auth";
 import useAccessToken from "../hooks/useAccessToken";
-import { useState } from "react";
 
 function LoginButton() {
   const dispatch = useDispatch();
-  const [token, setToken] = useState<string | null>(useAccessToken());
+  const token = useAccessToken();
 
-  if (token !== null) {
-  }
   const logout = useCallback(() => {
     dispatch(logoutSaga());
   }, [dispatch]);
-
-  function logoutClick() {
-    setToken(null);
-    dispatch(logout());
-  }
 
   return (
     <div>
@@ -31,7 +23,7 @@ function LoginButton() {
             {token !== null ? (
               <Col span={4}>
                 <div className="btn">
-                  <button className={styles.btn} onClick={logoutClick}>
+                  <button className={styles.btn} onClick={logout}>
                     로그아웃
                   </button>
                 </div>

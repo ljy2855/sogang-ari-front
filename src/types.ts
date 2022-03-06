@@ -22,12 +22,12 @@ export interface ClubType {
 }
 
 export interface ClubResType {
+  id: number;
   name: string;
   introduction: string;
+  detail: string;
   url: string;
   section: string;
-  detail: string;
-  location: string;
   recruiting: boolean;
 }
 

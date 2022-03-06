@@ -89,14 +89,11 @@ function* loginSaga(action: LoginSagaAction) {
   try {
     yield put(pending());
     const Token: TokenType = yield call(UserService.login, action.payload);
-
     AccessTokenService.set(Token.accessToken);
     RefreshTokenService.set(Token.refreshToken);
     yield put(success(Token.accessToken, Token.refreshToken));
-    console.log("login token!!!!!", Token);
     yield put(push("/"));
   } catch (error: any) {
-    console.log("Error:", error?.response);
     yield put(fail(new Error(error?.response?.data?.error || "UNKNOWN_ERROR")));
   }
 }
@@ -106,13 +103,8 @@ function* logoutSaga() {
     yield put(pending());
     const refreshToken: string = yield select(getRefreshTokenFromState);
     const accessToken: string = yield select(getAccessTokenFromState);
-    console.log("logout before refreshToken!!!!!", refreshToken);
-    console.log("logout before accessToken!!!!!", accessToken);
-
     yield call(UserService.logout, { accessToken, refreshToken });
-    console.log("logout after!!!!!");
   } catch (error) {
-    console.log(error);
   } finally {
     AccessTokenService.remove();
     RefreshTokenService.remove();

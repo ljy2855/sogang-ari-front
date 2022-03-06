@@ -12,7 +12,6 @@ export interface RootState {
 const rootreducer = (history: History<unknown>) =>
   combineReducers({
     auth,
-    // clubs,
     router: connectRouter(history),
   });
 

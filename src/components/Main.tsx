@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Club from "./Club";
 import styles from "./Main.module.css";
 import React from "react";
-import { ClubType } from "../types";
+import { ClubResType } from "../types";
 import { Col, Row } from "antd";
 import LoginButton from "./LoginButton.module";
+import axios from "axios";
 // import {
 //   Link,
 //   Element,
@@ -25,7 +26,7 @@ import LoginButton from "./LoginButton.module";
 function Main() {
   const [isInput, setisInput] = useState(false);
   const [clubs, setClubs] = useState([]);
-  const [rating, setRating] = useState("?");
+  const [section, setSection] = useState("");
   const [tmp, setTmp] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,38 +34,27 @@ function Main() {
   };
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      setRating(tmp);
+      setSection(tmp);
       setisInput(true);
     }
   };
-  const onClick = () => {
-    setRating(tmp);
+
+  const onClick = (section: string) => () => {
+    setSection(section);
     setisInput(true);
-    //   $(function () {
-    //     $("a[href*=#]").on("click", function (e) {
-    //       e.preventDefault();
-    //       $("html, body").animate(
-    //         { scrollTop: $($(this).attr("href")).offset().top },
-    //         500,
-    //         "linear"
-    //       );
-    //     });
-    //   });
   };
-  const getClubs = async () => {
-    const json = await (
-      await fetch(
-        `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.5&sort_by=year`
-      )
-    ).json();
-    // console.log(json);
-    setClubs(json.data.movies);
+  const CLUB_API_URL = "api/club/search_section";
+
+  const getClubs = async (section: string) => {
+    const data = await axios.get(`${CLUB_API_URL}/${section}`);
+    console.log(data.data);
+    setClubs(data.data.data);
   };
 
   /* running one time */
   useEffect(() => {
-    getClubs();
-  }, [rating]);
+    getClubs(section);
+  }, [section]);
 
   // console.log(clubs);
   return (
@@ -102,32 +92,50 @@ function Main() {
               <br /> <br /> <br />
               <div className={styles.container}>
                 <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
+                  <button
+                    className={styles.btn_category}
+                    onClick={onClick("봉사분과")}
+                  >
                     봉사
                   </button>
                 </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
+                <a href="#section03">
+                  <button
+                    className={styles.btn_category}
+                    onClick={onClick("사회교양분과")}
+                  >
                     사회교양
                   </button>
                 </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
+                <a href="#section04">
+                  <button
+                    className={styles.btn_category}
+                    onClick={onClick("종교분과")}
+                  >
                     종교
                   </button>
                 </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
+                <a href="#section05">
+                  <button
+                    className={styles.btn_category}
+                    onClick={onClick("연행예술분과")}
+                  >
                     연행예술
                   </button>
                 </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
+                <a href="#section06">
+                  <button
+                    className={styles.btn_category}
+                    onClick={onClick("체육분과")}
+                  >
                     체육
                   </button>
                 </a>
-                <a href="#section02">
-                  <button className={styles.btn_category} onClick={onClick}>
+                <a href="#section07">
+                  <button
+                    className={styles.btn_category}
+                    onClick={onClick("학술분과")}
+                  >
                     학술
                   </button>
                 </a>
@@ -145,7 +153,7 @@ function Main() {
                 />
 
                 <a href="#section02">
-                  <button className={styles.btn_go} onClick={onClick}>
+                  <button className={styles.btn_go} onClick={onClick(tmp)}>
                     GO
                   </button>
                 </a>
@@ -160,16 +168,16 @@ function Main() {
             <div className={styles.container}>
               {isInput ? (
                 <div className={styles.clubs}>
-                  {clubs.map((club: ClubType) => (
+                  {clubs.map((club: ClubResType) => (
                     <Club
                       key={club.id}
                       id={club.id}
-                      title={club.title}
-                      year={club.year}
-                      rating={club.rating}
-                      medium_cover_image={club.medium_cover_image}
-                      summary={club.summary}
-                      genres={club.genres}
+                      name={club.name}
+                      introduction={club.introduction}
+                      detail={club.detail}
+                      url={club.url}
+                      section={club.section}
+                      recruiting={club.recruiting}
                     />
                   ))}
                 </div>

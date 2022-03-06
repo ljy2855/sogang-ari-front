@@ -18,10 +18,10 @@ const Signin: React.FC<SigninProps> = ({ loading, login, error }) => {
     console.log("error:", error);
     switch (error.message) {
       case "USER_NOT_EXIST":
-        message.error("User not exist");
+        message.error("가입되지 않은 회원입니다.");
         break;
-      case "PASSWORD_NOT_MATCH":
-        message.error("Wrong password");
+      case "인증 에러":
+        message.error("비밀번호가 일치하지 않습니다.");
         break;
       default:
         message.error("Unknown error occured");
