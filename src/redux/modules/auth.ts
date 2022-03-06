@@ -89,15 +89,14 @@ function* loginSaga(action: LoginSagaAction) {
   try {
     yield put(pending());
     const Token: TokenType = yield call(UserService.login, action.payload);
-    console.log("login token!!!!!", Token);
 
     AccessTokenService.set(Token.accessToken);
     RefreshTokenService.set(Token.refreshToken);
-    yield put(success(Token));
-    window.location.href = "/";
-
-    // yield put(push("/"));
+    yield put(success(Token.accessToken, Token.refreshToken));
+    console.log("login token!!!!!", Token);
+    yield put(push("/"));
   } catch (error: any) {
+    console.log("Error:", error?.response);
     yield put(fail(new Error(error?.response?.data?.error || "UNKNOWN_ERROR")));
   }
 }
@@ -117,6 +116,6 @@ function* logoutSaga() {
   } finally {
     AccessTokenService.remove();
     RefreshTokenService.remove();
-    yield put(success(null));
+    yield put(success(null, null));
   }
 }

@@ -53,7 +53,7 @@ const Signin: React.FC<SigninProps> = ({ loading, login, error }) => {
               />
             </Col>
             <Col span={12}>
-              <div className={styles.signin_title}>My Books</div>
+              <div className={styles.signin_title}>Sogang Ari</div>
               <div className={styles.signin_subtitle}>
                 Please Note Your Opinion
               </div>

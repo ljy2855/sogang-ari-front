@@ -1,21 +1,22 @@
-import { applyMiddleware, compose, createStore } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-import reducer from "./modules/reducer";
+import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./modules/rootSaga";
 import { routerMiddleware } from "connected-react-router";
-import history from "../history";
 import RefreshTokenService from "../services/RefreshTokenService";
 import { composeWithDevTools } from "redux-devtools-extension";
 import AccessTokenService from "../services/AccessTokenService";
+import { createBrowserHistory } from "history";
+import rootreducer from "./modules/reducer";
+
+export const history = createBrowserHistory();
+const sagaMiddleware = createSagaMiddleware();
 
 const create = () => {
   const refreshToken = RefreshTokenService.get();
   const accessToken = AccessTokenService.get();
-  const sagaMiddleware = createSagaMiddleware();
 
   const store = createStore(
-    reducer(history),
+    rootreducer(history),
     {
       auth: {
         accessToken,

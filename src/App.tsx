@@ -2,7 +2,7 @@ import { ConnectedRouter } from "connected-react-router";
 import React from "react";
 import ErrorBoundary from "react-error-boundary";
 import { Route, Switch } from "react-router-dom";
-import history from "./history";
+import { history } from "./redux/create";
 import Detail from "./pages/Detail";
 import Error from "./pages/Error";
 import Home from "./pages/Home";

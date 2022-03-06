@@ -9,11 +9,11 @@ export interface RootState {
   router: Reducer<RouterState<unknown>, AnyAction>;
 }
 
-const reducer = (history: History<unknown>) =>
+const rootreducer = (history: History<unknown>) =>
   combineReducers({
     auth,
     // clubs,
     router: connectRouter(history),
   });
 
-export default reducer;
+export default rootreducer;
