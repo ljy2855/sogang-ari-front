@@ -27,6 +27,7 @@ function Main() {
   const [isInput, setisInput] = useState(false);
   const [clubs, setClubs] = useState([]);
   const [section, setSection] = useState("");
+  const [mode, setMode] = useState(0);
   const [tmp, setTmp] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,26 +36,33 @@ function Main() {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setSection(tmp);
+      setMode(1);
       setisInput(true);
     }
   };
 
-  const onClick = (section: string) => () => {
+  const onClick = (section: string, mode: number) => () => {
     setSection(section);
+    setMode(mode);
     setisInput(true);
   };
   const CLUB_API_URL = "api/club/search_section";
 
-  const getClubs = async (section: string) => {
-    const data = await axios.get(`${CLUB_API_URL}/${section}`);
+  const getClubs = async (section: string, mode: number) => {
+    let data = null;
+    if (mode === 0) {
+      data = await axios.get(`${CLUB_API_URL}/${section}`);
+    } else {
+      data = await axios.get(`${CLUB_API_URL}?${section}`);
+    }
     console.log(data.data);
     setClubs(data.data.data);
   };
 
   /* running one time */
   useEffect(() => {
-    getClubs(section);
-  }, [section]);
+    getClubs(section, mode);
+  }, [section, mode]);
 
   // console.log(clubs);
   return (
@@ -94,47 +102,47 @@ function Main() {
                 <a href="#section02">
                   <button
                     className={styles.btn_category}
-                    onClick={onClick("봉사분과")}
+                    onClick={onClick("봉사분과", 0)}
                   >
                     봉사
                   </button>
                 </a>
-                <a href="#section03">
+                <a href="#section02">
                   <button
                     className={styles.btn_category}
-                    onClick={onClick("사회교양분과")}
+                    onClick={onClick("사회교양분과", 0)}
                   >
                     사회교양
                   </button>
                 </a>
-                <a href="#section04">
+                <a href="#section02">
                   <button
                     className={styles.btn_category}
-                    onClick={onClick("종교분과")}
+                    onClick={onClick("종교분과", 0)}
                   >
                     종교
                   </button>
                 </a>
-                <a href="#section05">
+                <a href="#section02">
                   <button
                     className={styles.btn_category}
-                    onClick={onClick("연행예술분과")}
+                    onClick={onClick("연행예술분과", 0)}
                   >
                     연행예술
                   </button>
                 </a>
-                <a href="#section06">
+                <a href="#section02">
                   <button
                     className={styles.btn_category}
-                    onClick={onClick("체육분과")}
+                    onClick={onClick("체육분과", 0)}
                   >
                     체육
                   </button>
                 </a>
-                <a href="#section07">
+                <a href="#section02">
                   <button
                     className={styles.btn_category}
-                    onClick={onClick("학술분과")}
+                    onClick={onClick("학술분과", 0)}
                   >
                     학술
                   </button>
@@ -153,7 +161,7 @@ function Main() {
                 />
 
                 <a href="#section02">
-                  <button className={styles.btn_go} onClick={onClick(tmp)}>
+                  <button className={styles.btn_go} onClick={onClick(tmp, 1)}>
                     GO
                   </button>
                 </a>

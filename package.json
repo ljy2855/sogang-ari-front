@@ -27,7 +27,6 @@
     "typescript": "^4.5.5",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "http://54.180.156.178:8080/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -57,5 +56,6 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-scroll": "^1.8.3",
     "@types/redux-actions": "^2.6.2"
-  }
+  },
+  "proxy": "http://54.180.156.178:8080/"
 }
