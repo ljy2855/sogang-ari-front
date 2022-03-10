@@ -1,5 +1,5 @@
 import { ClubResType } from "../types";
-import styles from "./Club.module.css";
+import styles from "./Club.module.scss";
 import { Col, Row } from "antd";
 import Favorite from "./Favorite.module";
 import React from "react";

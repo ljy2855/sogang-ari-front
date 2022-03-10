@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.min.css";
-import "./index.css";
+import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import create from "./redux/create";
-import "antd/dist/antd.min.css";
-import "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js";
 
 const store = create();
 

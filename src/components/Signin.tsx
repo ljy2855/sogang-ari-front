@@ -1,7 +1,7 @@
 import { Button, Col, Input, message, Row } from "antd";
 import React, { useEffect } from "react";
 import { LoginReqType } from "../types";
-import styles from "./Signin.module.css";
+import styles from "./Signin.module.scss";
 
 interface SigninProps {
   loading: boolean;

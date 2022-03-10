@@ -1,5 +1,5 @@
 import { ClubDetailType } from "../types";
-import styles from "./Club.module.css";
+import styles from "./Club.module.scss";
 import React from "react";
 import LoginButton from "./LoginButton.module";
 import { Row, Col } from "antd";

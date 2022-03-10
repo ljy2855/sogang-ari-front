@@ -7,6 +7,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import AccessTokenService from "../services/AccessTokenService";
 import { createBrowserHistory } from "history";
 import rootreducer from "./modules/reducer";
+import StudentIdService from "../services/StudentIdService";
 
 export const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
@@ -14,6 +15,7 @@ const sagaMiddleware = createSagaMiddleware();
 const create = () => {
   const refreshToken = RefreshTokenService.get();
   const accessToken = AccessTokenService.get();
+  const studentId = StudentIdService.get();
 
   const store = createStore(
     rootreducer(history),
@@ -21,6 +23,7 @@ const create = () => {
       auth: {
         accessToken,
         refreshToken,
+        studentId,
         loading: false,
         error: null,
       },

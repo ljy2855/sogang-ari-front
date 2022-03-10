@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Club from "./Club";
-import styles from "./Main.module.css";
+import styles from "./Main.module.scss";
 import React from "react";
 import { ClubResType } from "../types";
 import { Col, Row } from "antd";
@@ -48,6 +48,7 @@ function Main() {
   };
   const CLUB_API_URL = "api/club/search_section";
 
+  // mode 0 은 섹션으로 검색, mode 1 은 이름으로 검색
   const getClubs = async (section: string, mode: number) => {
     let data = null;
     if (mode === 0) {

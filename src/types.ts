@@ -31,17 +31,19 @@ export interface ClubResType {
   recruiting: boolean;
 }
 
-export interface TokenType {
-  accessToken: string;
-  refreshToken: string;
-}
-
-export type LoginReqType = {
+export interface LoginReqType {
   studentId: string;
   password: string;
-};
+}
 
 export interface LoginResType {
   accessToken: string;
   refreshToken: string;
+}
+
+export interface WishResType {
+  id: number;
+  name: string;
+  section: string;
+  recruiting: boolean;
 }
