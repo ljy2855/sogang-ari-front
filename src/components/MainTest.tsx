@@ -8,7 +8,7 @@ interface MainTestProps {
   wishs: WishResType[] | null;
   error: Error | null;
   loading: boolean;
-  getClubs: () => void;
+  // getClubs: () => void;
   getWishs: () => void;
   deleteWish: (clubId: string) => void;
   addWish: (clubId: string) => void;
