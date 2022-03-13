@@ -14,6 +14,7 @@ import {
 } from "../redux/modules/wish";
 
 import MainTest from "../components/MainTest";
+import Main from "../components/Main";
 
 const MainContainer: React.FC = (props) => {
   const clubs = useSelector<RootState, WishResType[] | null>(
@@ -56,20 +57,20 @@ const MainContainer: React.FC = (props) => {
     },
     [dispatch]
   );
-
-  return (
-    <MainTest
-      {...props}
-      wishs={clubs}
-      error={error}
-      loading={loading}
-      getWishs={getWishs}
-      deleteWish={deleteWish}
-      addWish={addWish}
-      logout={logout}
-      login={login}
-    />
-  );
+  return <Main />;
+  // return (
+  //   <MainTest
+  //     {...props}
+  //     wishs={clubs}
+  //     error={error}
+  //     loading={loading}
+  //     getWishs={getWishs}
+  //     deleteWish={deleteWish}
+  //     addWish={addWish}
+  //     logout={logout}
+  //     login={login}
+  //   />
+  // );
 };
 
 export default MainContainer;

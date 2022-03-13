@@ -120,6 +120,6 @@ function* logoutSaga() {
     AccessTokenService.remove();
     RefreshTokenService.remove();
     StudentIdService.remove();
-    yield put(success(null, null));
+    yield put(success(null, null, null));
   }
 }
