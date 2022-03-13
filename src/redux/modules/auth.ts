@@ -105,7 +105,9 @@ function* loginSaga(action: LoginSagaAction) {
     yield put(success(token.accessToken, token.refreshToken, studentId));
     yield put(push("/"));
   } catch (error: any) {
-    yield put(fail(new Error(error?.response?.data?.error || "UNKNOWN_ERROR")));
+    yield put(
+      fail(new Error(error?.response?.data?.message || "UNKNOWN_ERROR"))
+    );
   }
 }
 
@@ -120,6 +122,6 @@ function* logoutSaga() {
     AccessTokenService.remove();
     RefreshTokenService.remove();
     StudentIdService.remove();
-    yield put(success(null, null));
+    yield put(success(null, null, null));
   }
 }

@@ -19,13 +19,18 @@ const MainContainer: React.FC = (props) => {
   const clubs = useSelector<RootState, WishResType[] | null>(
     (state) => state.wish.clubs
   );
-  const loading = useSelector<RootState, boolean>(
+  const wish_loading = useSelector<RootState, boolean>(
     (state) => state.wish.loading
   );
-  const error = useSelector<RootState, Error | null>(
+  const wish_error = useSelector<RootState, Error | null>(
     (state) => state.wish.error
   );
-
+  const auth_loading = useSelector<RootState, boolean>(
+    (state) => state.auth.loading
+  );
+  const auth_error = useSelector<RootState, Error | null>(
+    (state) => state.auth.error
+  );
   const dispatch = useDispatch();
 
   const getWishs = useCallback(() => {
@@ -61,8 +66,10 @@ const MainContainer: React.FC = (props) => {
     <MainTest
       {...props}
       wishs={clubs}
-      error={error}
-      loading={loading}
+      wish_error={wish_error}
+      wish_loading={wish_loading}
+      auth_error={auth_error}
+      auth_loading={auth_loading}
       getWishs={getWishs}
       deleteWish={deleteWish}
       addWish={addWish}

@@ -39,15 +39,18 @@ const LoginButton: React.FC<AuthInterface> = ({
 
   useEffect(() => {
     if (error === null) return;
-    console.log("error:", error);
+    console.log("error:", error.message);
     switch (error.message) {
       case "USER_NOT_EXIST":
+        console.log("가입되지 않은 회원입니다.");
         message.error("가입되지 않은 회원입니다.");
         break;
-      case "인증 에러":
+      case "AUTH_ERROR":
+        console.log("비밀번호가 일치하지 않습니다.");
         message.error("비밀번호가 일치하지 않습니다.");
         break;
       default:
+        console.log("Unknown error occured");
         message.error("Unknown error occured");
     }
   }, [error]);

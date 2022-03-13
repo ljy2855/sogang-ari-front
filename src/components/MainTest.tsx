@@ -10,13 +10,14 @@ import LoginButton from "./LoginButton.module";
 import MainSideBar from "./SideBar";
 import FilterClub from "./FilterClub";
 import { Route, Switch } from "react-router-dom";
-import Signin from "../pages/Signin";
 import UserAsk from "./UserAsk";
 
 interface MainTestProps {
   wishs: WishResType[] | null;
-  error: Error | null;
-  loading: boolean;
+  wish_error: Error | null;
+  wish_loading: boolean;
+  auth_error: Error | null;
+  auth_loading: boolean;
   // getClubs: () => void;
   getWishs: () => void;
   deleteWish: (clubId: string) => void;
@@ -27,8 +28,10 @@ interface MainTestProps {
 
 const MainTest: React.FC<MainTestProps> = ({
   wishs,
-  error,
-  loading,
+  wish_error,
+  wish_loading,
+  auth_error,
+  auth_loading,
   getWishs,
   deleteWish,
   addWish,
@@ -43,10 +46,10 @@ const MainTest: React.FC<MainTestProps> = ({
   }, [token, getWishs]);
 
   useEffect(() => {
-    if (error) {
+    if (wish_error) {
       logout();
     }
-  }, [error, logout]);
+  }, [wish_error, logout]);
 
   function Home() {
     return (
@@ -94,8 +97,8 @@ const MainTest: React.FC<MainTestProps> = ({
                   <LoginButton
                     logout={logout}
                     login={login}
-                    error={error}
-                    loading={loading}
+                    error={auth_error}
+                    loading={auth_loading}
                   />
                 </nav>
                 <div className={styles.Main}>
