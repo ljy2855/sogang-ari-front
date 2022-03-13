@@ -1,0 +1,21 @@
+@import "~bootstrap/scss/bootstrap";
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 100vh !important;
+    background-color: gainsboro;
+    z-index: 100;
+    padding: 48px 0 0;
+    width: 30%;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.item{
+    padding: $spacer *1.5 !important;
+    font-size: x-large;
+}
+
+

@@ -68,7 +68,7 @@ function Main() {
   // console.log(clubs);
   return (
     <div className={styles.background}>
-      <LoginButton />
+      {/* <LoginButton /> */}
       <Row align="middle" className={styles.main_row}>
         {/* 홈페이지 제목 */}
         <Col span={24}>
