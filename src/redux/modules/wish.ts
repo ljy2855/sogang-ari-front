@@ -83,7 +83,9 @@ function* getWishsSaga() {
     );
     yield put(success(Wishs));
   } catch (error: any) {
-    yield put(fail(new Error(error?.response?.data?.error || "UNKNOWN_ERROR")));
+    yield put(
+      fail(new Error(error?.response?.data?.message || "UNKNOWN_ERROR"))
+    );
   }
 }
 
@@ -108,7 +110,9 @@ function* addWishSaga(action: AddWishSagaAction) {
     const clubs: WishResType[] = yield select(getClubsFromState);
     yield put(success([...clubs, club]));
   } catch (error: any) {
-    yield put(fail(new Error(error?.response?.data?.error || "UNKNOWN_ERROR")));
+    yield put(
+      fail(new Error(error?.response?.data?.message || "UNKNOWN_ERROR"))
+    );
   }
 }
 
@@ -127,6 +131,8 @@ function* deleteWishSaga(action: DeleteWishSagaAction) {
     const clubs: WishResType[] = yield select(getClubsFromState);
     yield put(success(clubs.filter((club) => club.id.toString() !== clubId)));
   } catch (error: any) {
-    yield put(fail(new Error(error?.response?.data?.error || "UNKNOWN_ERROR")));
+    yield put(
+      fail(new Error(error?.response?.data?.message || "UNKNOWN_ERROR"))
+    );
   }
 }

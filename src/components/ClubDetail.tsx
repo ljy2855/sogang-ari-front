@@ -9,7 +9,7 @@ function ClubDetail(clubDetail: ClubDetailType) {
   console.log("ClubDetail!");
   return (
     <div>
-      <LoginButton />
+      {/* <LoginButton /> */}
       <br />
       <br />
       <br />

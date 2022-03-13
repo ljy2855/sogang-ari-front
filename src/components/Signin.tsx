@@ -1,5 +1,12 @@
 import { Button, Col, Input, message, Row } from "antd";
 import React, { useEffect } from "react";
+import {
+  Form,
+  FormGroup,
+  FormLabel,
+  ModalBody,
+  ModalFooter,
+} from "react-bootstrap";
 import { LoginReqType } from "../types";
 import styles from "./Signin.module.scss";
 
@@ -41,65 +48,66 @@ const Signin: React.FC<SigninProps> = ({ loading, login, error }) => {
   };
 
   return (
-    <form>
-      <Row align="middle" className={styles.signin_row}>
-        <Col span={24}>
-          <Row className={styles.signin_contents}>
-            <Col span={12}>
-              <img
-                src="/images/bg_signin.png"
-                alt="Signin"
-                className={styles.signin_bg}
-              />
-            </Col>
-            <Col span={12}>
-              <div className={styles.signin_title}>Sogang Ari</div>
-              <div className={styles.signin_subtitle}>
-                Please Note Your Opinion
-              </div>
-              <div className={styles.signin_underline} />
-              <div className={styles.studentId_title}>
-                studentId
-                <span className={styles.required}> *</span>
-              </div>
-              <div className={styles.input_area}>
-                <Input
-                  placeholder="studentId"
-                  autoComplete="studentId"
-                  name="studentId"
-                  className={styles.input}
-                  ref={studentIdRef}
-                  onKeyPress={keyPress}
-                />
-              </div>
-              <div className={styles.password_title}>
-                Password
-                <span className={styles.required}> *</span>
-              </div>
-              <div className={styles.input_area}>
-                <Input
-                  type="password"
-                  autoComplete="current-password"
-                  className={styles.input}
-                  ref={passwordRef}
-                  onKeyPress={keyPress}
-                />
-              </div>
-              <div className={styles.button_area}>
-                <Button
-                  size="large"
-                  loading={loading}
-                  className={styles.button}
-                  onClick={click}
-                >
-                  Sign In
-                </Button>
-              </div>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </form>
+    <></>
+    // <form>
+    //   <Row align="middle" className={styles.signin_row}>
+    //     <Col span={24}>
+    //       <Row className={styles.signin_contents}>
+    //         <Col span={12}>
+    //           <img
+    //             src="/images/bg_signin.png"
+    //             alt="Signin"
+    //             className={styles.signin_bg}
+    //           />
+    //         </Col>
+    //         <Col span={12}>
+    //           <div className={styles.signin_title}>Sogang Ari</div>
+    //           <div className={styles.signin_subtitle}>
+    //             Please Note Your Opinion
+    //           </div>
+    //           <div className={styles.signin_underline} />
+    //           <div className={styles.studentId_title}>
+    //             studentId
+    //             <span className={styles.required}> *</span>
+    //           </div>
+    //           <div className={styles.input_area}>
+    //             <Input
+    //               placeholder="studentId"
+    //               autoComplete="studentId"
+    //               name="studentId"
+    //               className={styles.input}
+    //               ref={studentIdRef}
+    //               onKeyPress={keyPress}
+    //             />
+    //           </div>
+    //           <div className={styles.password_title}>
+    //             Password
+    //             <span className={styles.required}> *</span>
+    //           </div>
+    //           <div className={styles.input_area}>
+    //             <Input
+    //               type="password"
+    //               autoComplete="current-password"
+    //               className={styles.input}
+    //               ref={passwordRef}
+    //               onKeyPress={keyPress}
+    //             />
+    //           </div>
+    //           <div className={styles.button_area}>
+    //             <Button
+    //               size="large"
+    //               loading={loading}
+    //               className={styles.button}
+    //               onClick={click}
+    //             >
+    //               Sign In
+    //             </Button>
+    //           </div>
+    //         </Col>
+    //       </Row>
+    //     </Col>
+    //   </Row>
+    // </form>
   );
 };
 

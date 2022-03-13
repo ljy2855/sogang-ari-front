@@ -2,9 +2,8 @@ import axios from "axios";
 
 import { WishResType } from "../types";
 
-const GET_WISH_API_URL = "api/get-wish";
-const ADD_WISH_API_URL = "api/add-wish";
-const DELETE_WISH_API_URL = "api/delete-wish";
+const WISH_API_URL = "api/user";
+const USER_API_URL = "http://13.125.248.38:8080";
 
 export default class WishService {
   public static async getWishs(
@@ -12,7 +11,7 @@ export default class WishService {
     studentId: string
   ): Promise<WishResType[]> {
     const response = await axios.get<WishResType[]>(
-      `${GET_WISH_API_URL}/${studentId}`,
+      `${USER_API_URL}/${WISH_API_URL}/${studentId}/wish`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -28,7 +27,7 @@ export default class WishService {
     clubId: string
   ): Promise<WishResType> {
     const response = await axios.post<WishResType>(
-      `${ADD_WISH_API_URL}/${studentId}/${clubId}`,
+      `${USER_API_URL}/${WISH_API_URL}/${studentId}/wish/${clubId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -43,10 +42,13 @@ export default class WishService {
     studentId: string,
     clubId: string
   ): Promise<void> {
-    await axios.delete(`${DELETE_WISH_API_URL}/${studentId}/${clubId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await axios.delete(
+      `${USER_API_URL}/${WISH_API_URL}/${studentId}/wish/${clubId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   }
 }
