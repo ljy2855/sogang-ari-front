@@ -9,6 +9,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import LoginButton from "./LoginButton.module";
 import MainSideBar from "./SideBar";
 import FilterClub from "./FilterClub";
+import { Route, Switch } from "react-router-dom";
+import Signin from "../pages/Signin";
+import UserAsk from "./UserAsk";
 
 interface MainTestProps {
   wishs: WishResType[] | null;
@@ -45,6 +48,37 @@ const MainTest: React.FC<MainTestProps> = ({
     }
   }, [error, logout]);
 
+  function Home() {
+    return (
+      <>
+        <div className="flex-column  ">
+          <p className="text-center">서강 아리</p>
+          <div className="container">
+            <div className={styles.main_subtitle}>
+              환영합니다, <strong>서강</strong>대학교 동<strong>아리</strong>
+              플랫폼입니다
+              {" | "}
+              <a href="https://www.instagram.com/jooeon.kang/?hl=ko">
+                @Team_Luwak
+              </a>
+              <br />
+              <br />
+              동아리 정보를 손쉽게 받아가세요
+              <br />
+            </div>
+          </div>
+          <FilterClub />
+          <div className="text-center">
+            <img
+              src="/images/sogang_bg_remove_small.png"
+              className={styles.logoImage}
+            ></img>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       {
@@ -65,19 +99,10 @@ const MainTest: React.FC<MainTestProps> = ({
                   />
                 </nav>
                 <div className={styles.Main}>
-                  <div className="flex-column  ">
-                    <p className="text-center">서강 아리</p>
-                    <div className="container">
-                      <p className="text-center"> Detail</p>
-                    </div>
-                    <FilterClub />
-                    <div className="text-center">
-                      <img
-                        src="/images/sogang_bg_remove_small.png"
-                        className={styles.logoImage}
-                      ></img>
-                    </div>
-                  </div>
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/ask" component={UserAsk} />
+                  </Switch>
                 </div>
               </div>
             </Col>

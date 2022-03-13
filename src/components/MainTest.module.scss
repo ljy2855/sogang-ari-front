@@ -21,7 +21,24 @@
   background-color: transparent; */
 }
 
+.main_subtitle {
+  text-align: center;
+  color: #2e251d;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
 
+a {
+  color: #eb3941;
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.2s;
+}
+a:hover {
+  color: #eb3941;
+  font-weight: bolder;
+}
 
 .logoImage{
   width: 50%;

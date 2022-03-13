@@ -13,12 +13,13 @@ function App() {
   return (
     <ErrorBoundary FallbackComponent={Error}>
       <ConnectedRouter history={history}>
-        <Switch>
+        {/* <Switch>
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/club/:id" component={Detail} />
           <Route exact path="/" component={Home} />
           <Route component={NotFound} />
-        </Switch>
+        </Switch> */}
+        <Home />
       </ConnectedRouter>
     </ErrorBoundary>
   );
