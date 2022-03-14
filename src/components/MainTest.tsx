@@ -11,6 +11,7 @@ import MainSideBar from "./SideBar";
 import FilterClub from "./FilterClub";
 import { Route, Switch } from "react-router-dom";
 import UserAsk from "./UserAsk";
+import NotFound from "../pages/NotFound";
 
 interface MainTestProps {
   wishs: WishResType[] | null;
@@ -105,6 +106,7 @@ const MainTest: React.FC<MainTestProps> = ({
                   <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/ask" component={UserAsk} />
+                    <Route component={NotFound} />
                   </Switch>
                 </div>
               </div>
