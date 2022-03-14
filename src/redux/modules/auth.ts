@@ -1,26 +1,52 @@
 import { push } from "connected-react-router";
-import { Action, createActions, handleActions } from "redux-actions";
+import { AnyAction } from "redux";
+import { createActions, handleActions } from "redux-actions";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import TokenService from "../../services/TokenService";
+import AccessTokenService from "../../services/AccessTokenService";
+import RefreshTokenService from "../../services/RefreshTokenService";
+import StudentIdService from "../../services/StudentIdService";
 import UserService from "../../services/UserService";
-import { AuthState, LoginReqType } from "../../types";
+import { LoginReqType, LoginResType } from "../../types";
+import { getAccessTokenFromState, getRefreshTokenFromState } from "../utils";
+
+export interface AuthState {
+  accessToken: string | null;
+  refreshToken: string | null;
+  studentId: string | null;
+  loading: boolean;
+  error: Error | null;
+}
 
 const initialState: AuthState = {
-  token: null,
+  accessToken: null,
+  refreshToken: null,
+  studentId: null,
   loading: false,
   error: null,
 };
 
-const prefix = "my-books/auth";
+const options = {
+  prefix: "sogang-ari/auth",
+};
 
-export const { pending, success, fail } = createActions(
+export const { success, pending, fail } = createActions(
+  {
+    SUCCESS: (
+      accessToken: string,
+      refreshToken: string,
+      studentId: string
+    ) => ({
+      accessToken,
+      refreshToken,
+      studentId,
+    }),
+  },
   "PENDING",
-  "SUCCESS",
   "FAIL",
-  { prefix }
+  options
 );
 
-const reducer = handleActions<AuthState, string>(
+const reducer = handleActions<AuthState, any>(
   {
     PENDING: (state) => ({
       ...state,
@@ -28,52 +54,74 @@ const reducer = handleActions<AuthState, string>(
       error: null,
     }),
     SUCCESS: (state, action) => ({
-      token: action.payload,
-      loading: true,
+      ...state,
+      accessToken: action.payload.accessToken,
+      refreshToken: action.payload.refreshToken,
+      studentId: action.payload.studentId,
+      loading: false,
       error: null,
     }),
-    FAIL: (state, action: any) => ({
+    FAIL: (state, action) => ({
       ...state,
-      loading: true,
+      loading: false,
       error: action.payload,
     }),
   },
   initialState,
-  { prefix }
+  options
 );
 
 export default reducer;
 
 // saga
-export const { login, logout } = createActions("LOGIN", "LOGOUT", { prefix });
+export const { login, logout } = createActions(
+  {
+    LOGIN: ({ studentId, password }: LoginReqType) => ({
+      studentId,
+      password,
+    }),
+  },
+  "LOGOUT",
+  options
+);
 
-function* loginSaga(action: Action<LoginReqType>) {
+export function* sagas() {
+  yield takeEvery(`${options.prefix}/LOGIN`, loginSaga);
+  yield takeEvery(`${options.prefix}/LOGOUT`, logoutSaga);
+}
+
+interface LoginSagaAction extends AnyAction {
+  payload: LoginReqType;
+}
+
+function* loginSaga(action: LoginSagaAction) {
   try {
     yield put(pending());
-    const token: string = yield call(UserService.login, action.payload);
-    TokenService.set(token);
-    yield put(success(token));
+    const { studentId } = action.payload;
+    const token: LoginResType = yield call(UserService.login, action.payload);
+    AccessTokenService.set(token.accessToken);
+    RefreshTokenService.set(token.refreshToken);
+    StudentIdService.set(studentId);
+    yield put(success(token.accessToken, token.refreshToken, studentId));
     yield put(push("/"));
   } catch (error: any) {
-    yield put(fail(new Error(error?.response?.data?.error || "UNKNOWN_ERROR")));
+    yield put(
+      fail(new Error(error?.response?.data?.message || "UNKNOWN_ERROR"))
+    );
   }
 }
 
 function* logoutSaga() {
   try {
     yield put(pending());
-    const token: string = yield select((state) => state.auth.token);
-    yield call(UserService.logout, token);
-    TokenService.set(token);
-    yield put(success(token));
-    yield put(push("/"));
+    const refreshToken: string = yield select(getRefreshTokenFromState);
+    const accessToken: string = yield select(getAccessTokenFromState);
+    yield call(UserService.logout, { accessToken, refreshToken });
   } catch (error) {
-    TokenService.remove();
-    yield put(success(null));
+  } finally {
+    AccessTokenService.remove();
+    RefreshTokenService.remove();
+    StudentIdService.remove();
+    yield put(success(null, null, null));
   }
-}
-
-export function* authSaga() {
-  yield takeEvery(`${prefix}/LOGIN`, loginSaga);
-  yield takeEvery(`${prefix}/LOGOUT`, logoutSaga);
 }

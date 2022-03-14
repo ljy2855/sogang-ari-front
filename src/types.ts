@@ -1,16 +1,13 @@
-import { RouterState } from "connected-react-router";
-import { AnyAction, Reducer } from "redux";
-
 export interface ClubDetailType {
   id: number;
-  download: number;
-  like: number;
+  download_count: number;
+  like_count: number;
   runtime: number;
   title: string;
   year: number;
   rating: number;
-  coverImg: string;
-  summary: string;
+  large_cover_image: string;
+  description_full: string;
   genres: string[];
 }
 
@@ -24,18 +21,29 @@ export interface ClubType {
   genres: string[];
 }
 
-export type LoginReqType = {
-  studentId: string;
-  password: string;
-};
-
-export interface AuthState {
-  token: string | null;
-  loading: boolean;
-  error: Error | null;
+export interface ClubResType {
+  id: number;
+  name: string;
+  introduction: string;
+  detail: string;
+  url: string;
+  section: string;
+  recruiting: boolean;
 }
 
-export interface RootState {
-  auth: AuthState;
-  router: Reducer<RouterState<unknown>, AnyAction>;
+export interface LoginReqType {
+  studentId: string;
+  password: string;
+}
+
+export interface LoginResType {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface WishResType {
+  id: number;
+  name: string;
+  section: string;
+  recruiting: boolean;
 }

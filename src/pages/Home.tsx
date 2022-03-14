@@ -1,8 +1,8 @@
 import React from "react";
-import Main from "../components/Main";
+// import Main from "../components/Main";
+// import MainTest from "../components/MainTest";
+import MainContainer from "../containers/MainContainer";
 
-const Home: React.FC = () => {
-  return <Main />;
-};
-
-export default Home;
+export default function Home() {
+  return <MainContainer />;
+}
