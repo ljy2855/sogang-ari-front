@@ -1,6 +1,6 @@
-const LOCAL_STORAGE_TOKEN_KEY_NAME = "token";
+const LOCAL_STORAGE_TOKEN_KEY_NAME = "refreshToken";
 
-export default class TokenService {
+export default class RefreshTokenService {
   public static get(): string | null {
     return localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY_NAME);
   }

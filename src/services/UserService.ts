@@ -1,17 +1,22 @@
 import axios from "axios";
-import { LoginReqType } from "../types";
+import { LoginReqType, LoginResType } from "../types";
 
-const USER_API_URL = "http://3.35.139.164:8080/api/user/login";
+const USER_LOGIN_API_URL = "api/login";
+const USER_LOGOUT_API_URL = "api/logout";
 
 export default class UserService {
-  public static async login(reqData: LoginReqType): Promise<string> {
-    const response = await axios.post(USER_API_URL, reqData);
-    console.log(response);
-    return response.data.token;
+  public static async login(reqData: LoginReqType): Promise<LoginResType> {
+    const response = await axios.post(
+      `${process.env.REACT_APP_URL}/${USER_LOGIN_API_URL}`,
+      reqData
+    );
+    const { accessToken, refreshToken } = response.data.data.tokenInfo;
+    return { accessToken, refreshToken };
   }
-  public static async logout(token: string): Promise<void> {
-    await axios.delete(USER_API_URL, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+  public static async logout(reqData: LoginResType): Promise<void> {
+    await axios.post(
+      `${process.env.REACT_APP_URL}/${USER_LOGOUT_API_URL}`,
+      reqData
+    );
   }
 }
