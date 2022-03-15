@@ -59,7 +59,7 @@ const LoginButton: React.FC<AuthInterface> = ({
     const studentId = studentIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
     login({ studentId, password });
-    handleLoginFormClose();
+    if (!loading && error === null) handleLoginFormClose();
   }
 
   const keyPress = (e: React.KeyboardEvent) => {

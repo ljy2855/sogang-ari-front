@@ -12,6 +12,7 @@ import FilterClub from "./FilterClub";
 import { Route, Switch } from "react-router-dom";
 import UserAsk from "./UserAsk";
 import NotFound from "../pages/NotFound";
+import ClubList from "./ClubList";
 
 interface MainTestProps {
   wishs: WishResType[] | null;
@@ -72,12 +73,13 @@ const MainTest: React.FC<MainTestProps> = ({
             </div>
           </div>
           <FilterClub />
-          <div className="text-center">
+          {/* <div className="text-center">
             <img
               src="/images/sogang_bg_remove_small.png"
               className={styles.logoImage}
             ></img>
-          </div>
+          </div> */}
+          <ClubList />
         </div>
       </>
     );
