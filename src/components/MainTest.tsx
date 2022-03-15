@@ -6,24 +6,6 @@ import React from "react";
 import { ClubResType } from "../types";
 import { Col, Row } from "antd";
 import ClubService from "../services/ClubService";
-import ClubLogoService from "../services/ClubLogoService";
-import axios from "axios";
-// import {
-//   Link,
-//   Element,
-//   Events,
-//   animateScroll as scroll,
-//   scroller,
-// } from "react-scroll";
-// import {
-//   Link,
-//   Button,
-//   Element,
-//   Events,
-//   animateScroll as scroll,
-//   scrollSpy,
-//   scroller,
-// } from "react-scroll";
 
 function Main() {
   const [isInput, setisInput] = useState(false);
@@ -31,7 +13,6 @@ function Main() {
   const [section, setSection] = useState("");
   const [mode, setMode] = useState(0);
   const [tmp, setTmp] = useState("");
-  const [img, setImg] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTmp(e.target.value);
