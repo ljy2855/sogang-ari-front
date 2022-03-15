@@ -11,16 +11,6 @@ export interface ClubDetailType {
   genres: string[];
 }
 
-export interface ClubType {
-  id: number;
-  title: string;
-  year: number;
-  rating: number;
-  medium_cover_image: string;
-  summary: string;
-  genres: string[];
-}
-
 export interface ClubResType {
   id: number;
   name: string;

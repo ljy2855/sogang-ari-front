@@ -6,6 +6,7 @@ import { ClubResType } from "../types";
 import { Col, Row } from "antd";
 import LoginButton from "./LoginButton.module";
 import axios from "axios";
+import ClubService from "../services/ClubService";
 // import {
 //   Link,
 //   Element,
@@ -25,7 +26,7 @@ import axios from "axios";
 
 function Main() {
   const [isInput, setisInput] = useState(false);
-  const [clubs, setClubs] = useState([]);
+  const [clubs, setClubs] = useState<ClubResType[]>([]);
   const [section, setSection] = useState("");
   const [mode, setMode] = useState(0);
   const [tmp, setTmp] = useState("");
@@ -46,18 +47,21 @@ function Main() {
     setMode(mode);
     setisInput(true);
   };
-  const CLUB_API_URL = "api/club/search_section";
 
   // mode 0 은 섹션으로 검색, mode 1 은 이름으로 검색
-  const getClubs = async (section: string, mode: number) => {
-    let data = null;
-    if (mode === 0) {
-      data = await axios.get(`${CLUB_API_URL}/${section}`);
-    } else {
-      data = await axios.get(`${CLUB_API_URL}?${section}`);
+  const getClubs = (section: string, mode: number) => {
+    if (section !== "") {
+      console.log(section, mode);
+      if (mode === 0) {
+        ClubService.getClubsBySection(section).then((response) =>
+          setClubs(response)
+        );
+      } else {
+        ClubService.getClubsByName(section).then((response) =>
+          setClubs(response)
+        );
+      }
     }
-    console.log(data.data);
-    setClubs(data.data.data);
   };
 
   /* running one time */
@@ -68,7 +72,6 @@ function Main() {
   // console.log(clubs);
   return (
     <div className={styles.background}>
-      {/* <LoginButton /> */}
       <Row align="middle" className={styles.main_row}>
         {/* 홈페이지 제목 */}
         <Col span={24}>
