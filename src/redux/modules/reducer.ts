@@ -3,7 +3,6 @@ import { AnyAction, combineReducers, Reducer } from "redux";
 import auth, { AuthState } from "./auth";
 import { History } from "history";
 import wish, { WishsState } from "./wish";
-// import clubs from "./clubs";
 
 export interface RootState {
   auth: AuthState;

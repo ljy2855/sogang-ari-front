@@ -13,7 +13,6 @@ import {
   deleteWish as deleteWishSaga,
 } from "../redux/modules/wish";
 
-import MainTest from "../components/MainTest";
 import Main from "../components/Main";
 
 const MainContainer: React.FC = (props) => {
@@ -64,7 +63,7 @@ const MainContainer: React.FC = (props) => {
   );
 
   return (
-    <MainTest
+    <Main
       {...props}
       wishs={clubs}
       wish_error={wish_error}

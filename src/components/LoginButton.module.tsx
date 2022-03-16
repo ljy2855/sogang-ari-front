@@ -1,7 +1,5 @@
 import styles from "./LoginButton.module.scss";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { logout as logoutSaga } from "../redux/modules/auth";
+import React, { useEffect, useState } from "react";
 import useAccessToken from "../hooks/useAccessToken";
 import {
   Button,
@@ -60,11 +58,16 @@ const LoginButton: React.FC<AuthInterface> = ({
     }
   }, [error]);
 
+  useEffect(() => {
+    if (!loading && error === null) {
+      handleLoginFormClose();
+    }
+  }, [loading, error]);
+
   function click() {
     const studentId = studentIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
     login({ studentId, password });
-    if (!loading && error === null) handleLoginFormClose();
   }
 
   const keyPress = (e: React.KeyboardEvent) => {
@@ -82,9 +85,11 @@ const LoginButton: React.FC<AuthInterface> = ({
           </button>
         </div>
       ) : (
-        <button className={styles.btn} onClick={handleLoginFormShow}>
-          로그인/회원가입
-        </button>
+        <div className="btn">
+          <button className={styles.btn} onClick={handleLoginFormShow}>
+            로그인/회원가입
+          </button>
+        </div>
       )}
       <Modal show={loginModalShow} onHide={handleLoginFormClose}>
         <Modal.Header closeButton>

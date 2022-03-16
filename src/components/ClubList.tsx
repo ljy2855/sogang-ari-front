@@ -42,7 +42,7 @@ const ClubList: React.FC = () => {
   return (
     <>
       <Container>
-        <Row clasName="row-cols-auto justify-content-around ">
+        <Row className="row-cols-auto justify-content-around ">
           <Col className="py-3">
             <ClubContainer></ClubContainer>
           </Col>
