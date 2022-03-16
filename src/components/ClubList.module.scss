@@ -1,28 +1,21 @@
-.club{
-    font-size: medium;
-    width: 300px !important;
- 
-    
+.club {
+  font-size: medium;
+  width: 300px !important;
 
-   .logo{ 
+  .logo {
+  }
 
-    }
-    
+  .recruit {
+    white-space: nowrap;
+    text-align: center;
+  }
 
-    .recruit{
-        white-space: nowrap;
-        text-align: center;
-    }
+  .name {
+    white-space: nowrap;
+    text-align: center;
+  }
 
-    .name{
-        white-space: nowrap;
-        text-align: center;
-    }
-
-    .detail{
-      
-        height: 100px !important;
-    }
-    
-
+  .detail {
+    height: 100px !important;
+  }
 }

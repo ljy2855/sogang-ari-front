@@ -1,7 +1,5 @@
 import styles from "./LoginButton.module.scss";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { logout as logoutSaga } from "../redux/modules/auth";
+import React, { useEffect, useState } from "react";
 import useAccessToken from "../hooks/useAccessToken";
 import {
   Button,
@@ -11,6 +9,7 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
+  ModalHeader,
 } from "react-bootstrap";
 import { LoginReqType } from "../types";
 import { message, Input } from "antd";
@@ -28,10 +27,14 @@ const LoginButton: React.FC<AuthInterface> = ({
   loading,
   error,
 }) => {
-  const [show, setShow] = useState(false);
+  const [loginModalShow, loginSetShow] = useState(false);
+  const [signUpModalShow, signUpSetShow] = useState(false);
 
-  const handleLoginFormClose = () => setShow(false);
-  const handleLoginFormShow = () => setShow(true);
+  const handleLoginFormClose = () => loginSetShow(false);
+  const handleLoginFormShow = () => loginSetShow(true);
+
+  const handleSignUpFormClose = () => signUpSetShow(false);
+  const handleSignUpFormShow = () => signUpSetShow(true);
 
   const studentIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
@@ -55,11 +58,16 @@ const LoginButton: React.FC<AuthInterface> = ({
     }
   }, [error]);
 
+  useEffect(() => {
+    if (!loading && error === null) {
+      handleLoginFormClose();
+    }
+  }, [loading, error]);
+
   function click() {
     const studentId = studentIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
     login({ studentId, password });
-    if (!loading && error === null) handleLoginFormClose();
   }
 
   const keyPress = (e: React.KeyboardEvent) => {
@@ -77,13 +85,15 @@ const LoginButton: React.FC<AuthInterface> = ({
           </button>
         </div>
       ) : (
-        <button className={styles.btn} onClick={handleLoginFormShow}>
-          로그인/회원가입
-        </button>
+        <div className="btn">
+          <button className={styles.btn} onClick={handleLoginFormShow}>
+            로그인/회원가입
+          </button>
+        </div>
       )}
-      <Modal show={show} onHide={handleLoginFormClose}>
+      <Modal show={loginModalShow} onHide={handleLoginFormClose}>
         <Modal.Header closeButton>
-          <Modal.Title>로그인/회원가입</Modal.Title>
+          <Modal.Title>로그인</Modal.Title>
         </Modal.Header>
         <ModalBody>
           <Form>
@@ -111,9 +121,24 @@ const LoginButton: React.FC<AuthInterface> = ({
           <Button onClick={click} variant="primary">
             로그인
           </Button>
-          <Button onClick={handleLoginFormClose} variant="secondary">
-            닫기
+          <Button
+            onClick={() => {
+              handleLoginFormClose();
+              handleSignUpFormShow();
+            }}
+            variant="secondary"
+          >
+            회원가입
           </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal show={signUpModalShow} onHide={handleSignUpFormClose}>
+        <ModalHeader closeButton>
+          <Modal.Title>회원가입</Modal.Title>
+        </ModalHeader>
+        <ModalBody> test2</ModalBody>
+        <ModalFooter>
+          <Button onClick={handleSignUpFormClose}>닫기</Button>
         </ModalFooter>
       </Modal>
     </>

@@ -1,22 +1,20 @@
-
-
 // Your variable overrides
 // $body-bg: #fff;
 // $body-color: #111;
 
-.mainWrapper{
+.mainWrapper {
   margin-left: 15%;
   place-items: center;
 }
 
-.Main{
+.Main {
   padding-top: 10%;
   height: 800px;
   width: 100%;
   display: flex;
   font-size: xx-large;
   justify-content: center;
-  
+
   /* background: transparent;
   background-color: transparent; */
 }
@@ -40,15 +38,11 @@ a:hover {
   font-weight: bolder;
 }
 
-.logoImage{
+.logoImage {
   width: 50%;
   max-width: 400px;
   height: auto;
 }
-
-
-
-
 
 // Bootstrap and its default variables
 @import "~bootstrap/scss/bootstrap";
