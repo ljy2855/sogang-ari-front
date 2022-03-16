@@ -14,6 +14,7 @@ import {
 } from "../redux/modules/wish";
 
 import MainTest from "../components/MainTest";
+import Main from "../components/Main";
 
 const MainContainer: React.FC = (props) => {
   const clubs = useSelector<RootState, WishResType[] | null>(
