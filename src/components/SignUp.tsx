@@ -72,7 +72,15 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
       passwordCheckRef.current!.state.value
     );
 
-    if (signUpState.isPasswordCheck) handleSignUpFormClose();
+    if (signUpState.isPasswordCheck) closeForm();
+  };
+
+  const closeForm = (): void => {
+    setSignUpState({
+      isPasswordCheck: false,
+      fail: false,
+    });
+    handleSignUpFormClose();
   };
 
   return (
@@ -124,7 +132,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
         </ModalBody>
         <ModalFooter>
           <Button onClick={submit}> 제출</Button>
-          <Button onClick={handleSignUpFormClose} variant="secondary">
+          <Button onClick={closeForm} variant="secondary">
             닫기
           </Button>
         </ModalFooter>
