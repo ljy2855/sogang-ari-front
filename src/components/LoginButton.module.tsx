@@ -13,6 +13,7 @@ import {
 } from "react-bootstrap";
 import { LoginReqType } from "../types";
 import { message, Input } from "antd";
+import SignUpForm from "./SignUp";
 
 interface AuthInterface {
   logout: () => void;
@@ -132,15 +133,10 @@ const LoginButton: React.FC<AuthInterface> = ({
           </Button>
         </ModalFooter>
       </Modal>
-      <Modal show={signUpModalShow} onHide={handleSignUpFormClose}>
-        <ModalHeader closeButton>
-          <Modal.Title>회원가입</Modal.Title>
-        </ModalHeader>
-        <ModalBody> test2</ModalBody>
-        <ModalFooter>
-          <Button onClick={handleSignUpFormClose}>닫기</Button>
-        </ModalFooter>
-      </Modal>
+      <SignUpForm
+        show={signUpModalShow}
+        handleSignUpFormClose={handleSignUpFormClose}
+      />
     </>
   );
 };
