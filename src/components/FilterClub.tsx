@@ -3,24 +3,24 @@ function FilterClub() {
   return (
     <>
       <div className="container px-4">
-        <div className="row row-cols-6 ">
+        <div className="row row-cols-6 justify-content-center">
           <div className="col">
-            <button className={styles.category}>종교</button>
+            <button className={styles.category}>봉사</button>
+          </div>
+          <div className="col">
+            <button className={styles.category}>사회교양</button>
           </div>
           <div className="col">
             <button className={styles.category}>종교</button>
           </div>
           <div className="col">
-            <button className={styles.category}>종교</button>
+            <button className={styles.category}>연행예술</button>
           </div>
           <div className="col">
-            <button className={styles.category}>종교</button>
+            <button className={styles.category}>체육</button>
           </div>
           <div className="col">
-            <button className={styles.category}>종교</button>
-          </div>
-          <div className="col">
-            <button className={styles.category}>종교</button>
+            <button className={styles.category}>학술</button>
           </div>
         </div>
       </div>
