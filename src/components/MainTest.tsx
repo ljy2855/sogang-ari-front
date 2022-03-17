@@ -52,7 +52,6 @@ function Main() {
     getClubs(section, mode);
   }, [section, mode]);
 
-  // console.log(clubs);
   return (
     <div className={styles.background}>
       <Row align="middle" className={styles.main_row}>
@@ -161,17 +160,17 @@ function Main() {
         <section id="section02">
           <Col span={24}>
             <div className={styles.container}>
-              {isInput ? (
+              {/* {isInput ? (
                 <div className={styles.clubs}>
                   {clubs.map((club: ClubResType) => (
                     <img
-                      src={`${process.env.REACT_APP_URL}/api/club/logo/${club.id}`}
+                      src={`${process.env.REACT_APP_URL}/api/club/${club.id}/logo`}
                       style={{ width: "100px", height: "100px" }}
                       alt={`${club.name}`}
                     />
                   ))}
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
           </Col>
         </section>

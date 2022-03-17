@@ -11,6 +11,7 @@ import { Route, Switch } from "react-router-dom";
 import UserAsk from "./UserAsk";
 import NotFound from "../pages/NotFound";
 import ClubList from "./ClubList";
+import JubroLab from "./JubroLab";
 
 interface MainProps {
   wishs: WishResType[] | null;
@@ -46,7 +47,8 @@ const Main: React.FC<MainProps> = ({
 
   useEffect(() => {
     if (wish_error) {
-      logout();
+      console.log(wish_error);
+      // logout();
     }
   }, [wish_error, logout]);
 
@@ -105,6 +107,20 @@ const Main: React.FC<MainProps> = ({
                   <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/ask" component={UserAsk} />
+                    <Route
+                      exact
+                      path="/jubroLab"
+                      render={() => (
+                        <JubroLab
+                          wishs={wishs}
+                          wish_error={wish_error}
+                          wish_loading={wish_loading}
+                          getWishs={getWishs}
+                          deleteWish={deleteWish}
+                          addWish={addWish}
+                        />
+                      )}
+                    />
                     <Route component={NotFound} />
                   </Switch>
                 </div>
