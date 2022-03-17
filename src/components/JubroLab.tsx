@@ -64,7 +64,10 @@ const JubroLab: React.FC<TestProps> = ({
         loading={wishs === null || wish_loading}
         showHeader={false}
         rowKey="clubId"
-        pagination={false}
+        pagination={{
+          pageSize: 7,
+          position: ["bottomCenter"],
+        }}
       />
     </div>
   );

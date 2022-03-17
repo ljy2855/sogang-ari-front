@@ -1,4 +1,4 @@
-.book {
+.wish {
   display: table;
   overflow: hidden;
 }
@@ -15,11 +15,11 @@
   color: #0a222e;
 }
 
-.author {
+.section {
+  color: #999999;
   display: table-cell;
   vertical-align: middle;
   font-size: 14px;
-  font-weight: bold;
   padding-left: 10px;
 }
 
@@ -27,11 +27,9 @@
   color: #28546a;
 }
 
-.created {
-  color: #999999;
+.recruiting {
   display: table-cell;
   vertical-align: middle;
-  font-size: 14px;
   padding-left: 10px;
 }
 
@@ -53,4 +51,10 @@
 
 .button_edit {
   margin-right: 5px;
+}
+
+.logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
