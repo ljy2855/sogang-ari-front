@@ -39,9 +39,9 @@ a:hover {
 }
 
 .logoImage {
-  width: 50%;
-  max-width: 400px;
-  height: auto;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 
 // Bootstrap and its default variables
