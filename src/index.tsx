@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "antd/dist/antd.min.css";
+import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import create from "./redux/create";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const store = create();
 
