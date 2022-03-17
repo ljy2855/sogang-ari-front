@@ -115,7 +115,6 @@ const Main: React.FC<MainProps> = ({
                           wishs={wishs}
                           wish_error={wish_error}
                           wish_loading={wish_loading}
-                          getWishs={getWishs}
                           deleteWish={deleteWish}
                           addWish={addWish}
                         />

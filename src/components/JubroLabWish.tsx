@@ -1,6 +1,5 @@
 import { CheckCircleTwoTone, DeleteOutlined } from "@ant-design/icons";
 import { Button, Tooltip } from "antd";
-import moment from "moment";
 import React from "react";
 import styles from "./JubroLabWish.module.scss";
 

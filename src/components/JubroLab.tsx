@@ -1,4 +1,4 @@
-import { Button, Input, Table } from "antd";
+import { Button, Input, message, Table } from "antd";
 // import { Redirect } from "react-router-dom";
 import useAccessToken from "../hooks/useAccessToken";
 import { WishResType } from "../types";
@@ -9,7 +9,6 @@ interface TestProps {
   wishs: WishResType[] | null;
   wish_error: Error | null;
   wish_loading: boolean;
-  getWishs: () => void;
   deleteWish: (clubId: string) => void;
   addWish: (clubId: string) => void;
 }
@@ -18,19 +17,24 @@ const JubroLab: React.FC<TestProps> = ({
   wishs,
   wish_error,
   wish_loading,
-  getWishs,
   deleteWish,
   addWish,
 }) => {
-  const token = useAccessToken();
+  // const token = useAccessToken();
   const idRef = React.useRef<Input>(null);
-  const [test_wishs, setWishs] = useState<WishResType[] | null>(null);
 
   useEffect(() => {
-    if (token) {
-      getWishs();
+    if (wish_error === null) return;
+    switch (wish_error.message) {
+      case "AUTH_ERROR":
+        console.log("로그인");
+        message.error("로그인이 필요합니다.");
+        break;
+      default:
+        console.log("Server Error");
+        message.error("Server Error");
     }
-  }, [getWishs, token]);
+  }, [wish_error]);
 
   // if (token === null) {
   //   return <Redirect to="/" />;
@@ -61,7 +65,7 @@ const JubroLab: React.FC<TestProps> = ({
             ),
           },
         ]}
-        loading={wishs === null || wish_loading}
+        loading={wish_loading}
         showHeader={false}
         rowKey="clubId"
         pagination={{
