@@ -17,7 +17,6 @@ const ClubList: React.FC<ClubListProps> = ({ clubs }) => {
                 <Row>
                   <Image
                     className={styles.logo}
-                    thumbnail={true}
                     src={`${process.env.REACT_APP_URL}/api/club/logo/${club.id}`}
                   ></Image>
                 </Row>
