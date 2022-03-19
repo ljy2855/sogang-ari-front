@@ -26,3 +26,9 @@ export interface WishResType {
   section: string;
   recruiting: boolean;
 }
+
+export interface SignUpReqType {
+  name: string;
+  studentId: string;
+  password: string;
+}

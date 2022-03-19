@@ -17,7 +17,7 @@ export default class ClubService {
 
   public static async getClubsByName(clubName: string): Promise<ClubResType[]> {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL}/${CLUB_BY_NAME_API_URL}?clubName=${clubName}`
+      `${process.env.REACT_APP_URL}/${CLUB_BY_NAME_API_URL}?name=${clubName}`
     );
     return response.data.data;
   }
