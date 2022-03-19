@@ -1,21 +1,21 @@
 import axios from "axios";
-import { SignUpReqType } from "../types";
+import { SignUpReqType, SignUpResType } from "../types";
 
 const SIGNUP_API_URL = "api/sign-up";
 
 export default class SignUpService {
-  public static async signUp(reqData: SignUpReqType): Promise<string> {
-    let response = "";
+  public static async signUp(
+    reqData: SignUpReqType
+  ): Promise<SignUpResType | null> {
+    let response: SignUpResType | null = null;
     await axios
       .post(`${process.env.REACT_APP_URL}/${SIGNUP_API_URL}`, reqData)
       .then((res) => {
-        response = res.data.result;
+        response = res.data;
       })
       .catch((error) => {
-        response = error.response;
-        console.log("error:", response);
+        response = error.response.data;
       });
-    console.log("signup:", response);
     return response;
   }
 }

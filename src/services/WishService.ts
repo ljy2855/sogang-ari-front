@@ -17,7 +17,6 @@ export default class WishService {
         },
       }
     );
-    console.log("test:", response.data.data);
     return response.data.data;
   }
 
@@ -26,7 +25,6 @@ export default class WishService {
     userId: string,
     clubId: string
   ): Promise<WishResType> {
-    console.log("add token!!:", token);
     const response = await axios.post(
       `${process.env.REACT_APP_URL}/${WISH_API_URL}/${userId}/wish/${clubId}`,
       {},
@@ -36,7 +34,6 @@ export default class WishService {
         },
       }
     );
-    console.log("add!!", response.data);
     return response.data.data;
   }
 
@@ -45,7 +42,6 @@ export default class WishService {
     userId: string,
     clubId: string
   ): Promise<void> {
-    console.log("add token!!:", token);
     await axios.delete(
       `${process.env.REACT_APP_URL}/${WISH_API_URL}/${userId}/wish/${clubId}`,
       {
@@ -54,6 +50,5 @@ export default class WishService {
         },
       }
     );
-    console.log("delete!!");
   }
 }

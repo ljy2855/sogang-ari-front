@@ -32,3 +32,8 @@ export interface SignUpReqType {
   userId: string;
   password: string;
 }
+
+export interface SignUpResType {
+  message: string;
+  result: string;
+}

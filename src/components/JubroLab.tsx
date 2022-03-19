@@ -4,6 +4,8 @@ import useAccessToken from "../hooks/useAccessToken";
 import { WishResType } from "../types";
 import React, { useEffect, useState } from "react";
 import Wish from "./JubroLabWish";
+import ClubService from "../services/ClubService";
+import SignUpService from "../services/SignUpService";
 
 interface TestProps {
   wishs: WishResType[] | null;
@@ -22,6 +24,9 @@ const JubroLab: React.FC<TestProps> = ({
 }) => {
   // const token = useAccessToken();
   const idRef = React.useRef<Input>(null);
+  const nameRef = React.useRef<Input>(null);
+  const userIdRef = React.useRef<Input>(null);
+  const passwordRef = React.useRef<Input>(null);
 
   useEffect(() => {
     if (wish_error === null) return;
@@ -31,8 +36,7 @@ const JubroLab: React.FC<TestProps> = ({
         message.error("로그인이 필요합니다.");
         break;
       default:
-        console.log("Server Error");
-        message.error("Server Error");
+        message.error(wish_error.message);
     }
   }, [wish_error]);
 
@@ -45,12 +49,37 @@ const JubroLab: React.FC<TestProps> = ({
     console.log("club");
     addWish(clubId);
   }
+  function click() {
+    const name = nameRef.current!.state.value;
+    const userId = userIdRef.current!.state.value;
+    const password = passwordRef.current!.state.value;
+    SignUpService.signUp({ name, userId, password }).then((res) => {
+      switch (res?.result) {
+        case "success":
+          message.success(res.message);
+          break;
+        case "fail":
+          message.error(res.message);
+          break;
+        default:
+          console.log(res?.message);
+          message.error(res?.message);
+      }
+      console.log(res);
+    });
+  }
 
   return (
     <div>
       <h1>jubro Lab</h1>
+      <Input type="text" placeholder="Name" ref={nameRef} />
+      <Input type="text" placeholder="UserId" ref={userIdRef} />
+      <Input type="text" placeholder="Password" ref={passwordRef} />
+      <Button key="1" onClick={click}>
+        Sign Up
+      </Button>
       <Input type="text" placeholder="ClubId" ref={idRef} />
-      <Button key="1" onClick={clickAdd}>
+      <Button key="2" onClick={clickAdd}>
         Add Wish
       </Button>
       <Table
