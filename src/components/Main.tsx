@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { LoginReqType, WishResType } from "../types";
+import React, { useEffect, useState } from "react";
+import { ClubResType, LoginReqType, WishResType } from "../types";
 import useAccessToken from "../hooks/useAccessToken";
 import styles from "./Main.module.scss";
 import { Container, Row, Col } from "react-bootstrap";
 
 import LoginButton from "./LoginButton.module";
-import MainSideBar from "./SideBar";
+import MainSideBar from "./MainSideBar";
 import FilterClub from "./FilterClub";
 import { Route, Switch } from "react-router-dom";
 import UserAsk from "./UserAsk";
@@ -52,6 +52,12 @@ const Main: React.FC<MainProps> = ({
     }
   }, [wish_error, logout]);
 
+  const [clubs, setClubs] = useState<ClubResType[]>([]);
+
+  useEffect(() => {
+    console.log(clubs);
+  }, [clubs]);
+
   function Home() {
     return (
       <>
@@ -71,14 +77,14 @@ const Main: React.FC<MainProps> = ({
               <br />
             </div>
           </div>
-          <FilterClub />
+          <FilterClub setClubs={setClubs} />
           {/* <div className="text-center">
             <img
               src="/images/sogang_bg_remove_small.png"
               className={styles.logoImage}
             ></img>
           </div> */}
-          <ClubList />
+          <ClubList clubs={clubs} />
         </div>
       </>
     );

@@ -9,9 +9,11 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
+  ModalHeader,
 } from "react-bootstrap";
 import { LoginReqType } from "../types";
 import { message, Input } from "antd";
+import SignUpForm from "./SignUp";
 
 interface AuthInterface {
   logout: () => void;
@@ -26,10 +28,14 @@ const LoginButton: React.FC<AuthInterface> = ({
   loading,
   error,
 }) => {
-  const [show, setShow] = useState(false);
+  const [loginModalShow, loginSetShow] = useState(false);
+  const [signUpModalShow, signUpSetShow] = useState(false);
 
-  const handleLoginFormClose = () => setShow(false);
-  const handleLoginFormShow = () => setShow(true);
+  const handleLoginFormClose = () => loginSetShow(false);
+  const handleLoginFormShow = () => loginSetShow(true);
+
+  const handleSignUpFormClose = () => signUpSetShow(false);
+  const handleSignUpFormShow = () => signUpSetShow(true);
 
   const studentIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
@@ -86,9 +92,9 @@ const LoginButton: React.FC<AuthInterface> = ({
           </button>
         </div>
       )}
-      <Modal show={show} onHide={handleLoginFormClose}>
+      <Modal show={loginModalShow} onHide={handleLoginFormClose}>
         <Modal.Header closeButton>
-          <Modal.Title>로그인/회원가입</Modal.Title>
+          <Modal.Title>로그인</Modal.Title>
         </Modal.Header>
         <ModalBody>
           <Form>
@@ -116,11 +122,21 @@ const LoginButton: React.FC<AuthInterface> = ({
           <Button onClick={click} variant="primary">
             로그인
           </Button>
-          <Button onClick={handleLoginFormClose} variant="secondary">
-            닫기
+          <Button
+            onClick={() => {
+              handleLoginFormClose();
+              handleSignUpFormShow();
+            }}
+            variant="secondary"
+          >
+            회원가입
           </Button>
         </ModalFooter>
       </Modal>
+      <SignUpForm
+        show={signUpModalShow}
+        handleSignUpFormClose={handleSignUpFormClose}
+      />
     </>
   );
 };

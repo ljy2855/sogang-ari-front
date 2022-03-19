@@ -3,6 +3,7 @@
   width: 300px !important;
 
   .logo {
+    height: 100px !important;
   }
 
   .recruit {
@@ -17,5 +18,6 @@
 
   .detail {
     height: 100px !important;
+    overflow: hidden;
   }
 }

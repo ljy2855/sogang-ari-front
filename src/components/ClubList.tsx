@@ -1,8 +1,12 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
 import styles from "./ClubList.module.scss";
 
-const ClubList: React.FC = () => {
-  function ClubContainer() {
+interface ClubListProps {
+  clubs: ClubResType[];
+}
+
+const ClubList: React.FC<ClubListProps> = ({ clubs }) => {
+  function clubContainer(club: ClubResType) {
     return (
       <>
         <div className={styles.club}>
@@ -12,20 +16,25 @@ const ClubList: React.FC = () => {
                 <Row>
                   <Image
                     className={styles.logo}
-                    thumbnail={true}
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwOkC1wUhKEB-RkuXsgD1s6QR8D3K3JYc6Gw&usqp=CAU"
+                    src={`${process.env.REACT_APP_URL}/api/club/${club.id}/logo`}
                   ></Image>
                 </Row>
                 <Row className="pt-3">
-                  <Container className={styles.recruit}> 모집중</Container>
+                  <Container className={styles.recruit}>
+                    {" "}
+                    {club.recruiting ? "모집중" : "모집 마감"}
+                  </Container>
                 </Row>
               </Col>
               <Col className="p-3">
                 <Row>
-                  <Container className={styles.name}> 동아리명</Container>
+                  <Container className={styles.name}> {club.name}</Container>
                 </Row>
                 <Row>
-                  <Container className={styles.detail}> Detail</Container>
+                  <Container className={styles.detail}>
+                    {" "}
+                    {club.detail}
+                  </Container>
                 </Row>
                 <Row>
                   <a>자세히 보기</a>
@@ -42,18 +51,10 @@ const ClubList: React.FC = () => {
     <>
       <Container>
         <Row className="row-cols-auto justify-content-around ">
-          <Col className="py-3">
-            <ClubContainer></ClubContainer>
-          </Col>
-          <Col className="py-3">
-            <ClubContainer></ClubContainer>
-          </Col>
-          <Col className="py-3">
-            <ClubContainer></ClubContainer>
-          </Col>
-          <Col className="py-3">
-            <ClubContainer></ClubContainer>
-          </Col>
+          {clubs &&
+            clubs.map((club: ClubResType) => (
+              <Col className="py-3">{clubContainer(club)}</Col>
+            ))}
         </Row>
       </Container>
     </>
