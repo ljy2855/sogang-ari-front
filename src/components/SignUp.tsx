@@ -1,3 +1,4 @@
+import styles from "./LoginButton.module.scss";
 import { Input } from "antd";
 import React, { useState } from "react";
 import {
@@ -131,10 +132,13 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={submit}> 제출</Button>
-          <Button onClick={closeForm} variant="secondary">
+          <button className={styles.btn_red} onClick={submit}>
+            {" "}
+            가입하기
+          </button>
+          {/* <Button onClick={closeForm} variant="secondary">
             닫기
-          </Button>
+          </Button> */}
         </ModalFooter>
       </Modal>
     </>
