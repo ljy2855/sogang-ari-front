@@ -3,13 +3,13 @@
 // $body-color: #111;
 
 .mainWrapper {
-  height: 100vh;
-  margin-left: 260px;
+  margin-left: 15%;
   place-items: center;
 }
 
 .Main {
   padding-top: 10%;
+  height: 800px;
   width: 100%;
   display: flex;
   font-size: xx-large;
@@ -39,9 +39,9 @@ a:hover {
 }
 
 .logoImage {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
+  width: 50%;
+  max-width: 400px;
+  height: auto;
 }
 
 // Bootstrap and its default variables
