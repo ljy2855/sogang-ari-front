@@ -1,4 +1,5 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
+import { ClubResType } from "../types";
 import styles from "./ClubList.module.scss";
 
 interface ClubListProps {
