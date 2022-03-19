@@ -27,7 +27,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   show,
   handleSignUpFormClose,
 }) => {
-  const studentIdRef = React.useRef<Input>(null);
+  const userIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
   const passwordCheckRef = React.useRef<Input>(null);
   const emailAddressRef = React.useRef<Input>(null);
@@ -36,8 +36,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
     fail: undefined,
   });
 
-  const checkPassword = (password: string, passwordCheck: string): void => {
-    if (password === null) {
+  const checkPassword = (
+    password: string | undefined,
+    passwordCheck: string | undefined
+  ): void => {
+    if (password === null || password === undefined) {
       setSignUpState({
         isPasswordCheck: false,
         errorMessage: "비밀번호가 비었습니다",
@@ -92,12 +95,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
         <ModalBody>
           <Form>
             <FormGroup>
-              <FormLabel>StudentId</FormLabel>
-              <Input
-                type="text"
-                placeholder="studentId"
-                ref={studentIdRef}
-              ></Input>
+              <FormLabel>UserId</FormLabel>
+              <Input type="text" placeholder="userId" ref={userIdRef}></Input>
             </FormGroup>
             <FormGroup>
               <FormLabel>Email</FormLabel>
