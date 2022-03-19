@@ -17,7 +17,7 @@ import SignUpForm from "./SignUp";
 
 interface AuthInterface {
   logout: () => void;
-  login: ({ studentId, password }: LoginReqType) => void;
+  login: ({ userId, password }: LoginReqType) => void;
   loading: boolean;
   error: Error | null;
 }
@@ -37,7 +37,7 @@ const LoginButton: React.FC<AuthInterface> = ({
   const handleSignUpFormClose = () => signUpSetShow(false);
   const handleSignUpFormShow = () => signUpSetShow(true);
 
-  const studentIdRef = React.useRef<Input>(null);
+  const userIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
   const token = useAccessToken();
 
@@ -66,9 +66,9 @@ const LoginButton: React.FC<AuthInterface> = ({
   }, [loading, error]);
 
   function click() {
-    const studentId = studentIdRef.current!.state.value;
+    const userId = userIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
-    login({ studentId, password });
+    login({ userId, password });
   }
 
   const keyPress = (e: React.KeyboardEvent) => {
@@ -99,11 +99,11 @@ const LoginButton: React.FC<AuthInterface> = ({
         <ModalBody>
           <Form>
             <FormGroup>
-              <FormLabel>studentID </FormLabel>
+              <FormLabel>UserID </FormLabel>
               <Input
                 type="text"
-                placeholder="studentId"
-                ref={studentIdRef}
+                placeholder="userId"
+                ref={userIdRef}
                 onKeyPress={keyPress}
               />
             </FormGroup>

@@ -11,7 +11,6 @@ import {
   ModalFooter,
   ModalHeader,
 } from "react-bootstrap";
-import SignUpService from "../services/SignUpService";
 
 interface SignUpFormProps {
   show: boolean;
@@ -28,11 +27,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   show,
   handleSignUpFormClose,
 }) => {
-  const nameRef = React.useRef<Input>(null);
+  const studentIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
   const passwordCheckRef = React.useRef<Input>(null);
-  const studentIdRef = React.useRef<Input>(null);
-  const [result, setResult] = useState("");
+  const emailAddressRef = React.useRef<Input>(null);
   const [signUpState, setSignUpState] = useState<SignUpState>({
     isPasswordCheck: false,
     fail: undefined,
@@ -47,7 +45,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
       });
       return;
     }
-    if (password.length <= 1) {
+    if (password.length <= 10) {
       setSignUpState({
         isPasswordCheck: false,
         errorMessage: "비밀번호가 너무 짧습니다",
@@ -74,17 +72,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
       passwordCheckRef.current!.state.value
     );
 
-    if (signUpState.isPasswordCheck) {
-      const name = nameRef.current!.state.value;
-      const password = passwordRef.current!.state.value;
-      const studentId = studentIdRef.current!.state.value;
-      SignUpService.signUp({ name, password, studentId }).then((result) => {
-        setResult(result);
-        console.log("result", result);
-
-        if (result === "success") closeForm();
-      });
-    }
+    if (signUpState.isPasswordCheck) closeForm();
   };
 
   const closeForm = (): void => {
@@ -92,7 +80,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
       isPasswordCheck: false,
       fail: false,
     });
-    setResult("");
     handleSignUpFormClose();
   };
 
@@ -105,15 +92,19 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
         <ModalBody>
           <Form>
             <FormGroup>
-              <FormLabel>닉네임</FormLabel>
-              <Input type="text" placeholder="name" ref={nameRef}></Input>
+              <FormLabel>StudentId</FormLabel>
+              <Input
+                type="text"
+                placeholder="studentId"
+                ref={studentIdRef}
+              ></Input>
             </FormGroup>
             <FormGroup>
               <FormLabel>Email</FormLabel>
               <Input
                 type="email"
                 placeholder="example@test.com"
-                ref={studentIdRef}
+                ref={emailAddressRef}
               ></Input>
             </FormGroup>
             <FormGroup>

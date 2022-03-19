@@ -5,7 +5,7 @@ import { WishResType } from "../../types";
 import {
   getAccessTokenFromState,
   getClubsFromState,
-  getStudentIdFromState,
+  getUserIdFromState,
 } from "../utils";
 import WishService from "../../services/WishService";
 
@@ -75,11 +75,11 @@ function* getWishsSaga() {
   try {
     yield put(pending());
     const token: string = yield select(getAccessTokenFromState);
-    const studentId: string = yield select((state) => state.auth.studentId);
+    const userId: string = yield select((state) => state.auth.userId);
     const Wishs: WishResType[] = yield call(
       WishService.getWishs,
       token,
-      studentId
+      userId
     );
     yield put(success(Wishs));
   } catch (error: any) {
@@ -99,12 +99,12 @@ function* addWishSaga(action: AddWishSagaAction) {
   try {
     yield put(pending());
     const token: string = yield select(getAccessTokenFromState);
-    const studentId: string = yield select(getStudentIdFromState);
+    const userId: string = yield select(getUserIdFromState);
     const { clubId } = action.payload;
     const club: WishResType = yield call(
       WishService.addWish,
       token,
-      studentId,
+      userId,
       clubId
     );
     const clubs: WishResType[] = yield select(getClubsFromState);
@@ -125,9 +125,9 @@ interface DeleteWishSagaAction extends AnyAction {
 function* deleteWishSaga(action: DeleteWishSagaAction) {
   try {
     const token: string = yield select(getAccessTokenFromState);
-    const studentId: string = yield select(getStudentIdFromState);
+    const userId: string = yield select(getUserIdFromState);
     const { clubId } = action.payload;
-    yield call(WishService.deleteWish, token, studentId, clubId);
+    yield call(WishService.deleteWish, token, userId, clubId);
     const clubs: WishResType[] = yield select(getClubsFromState);
     yield put(
       success(clubs.filter((club) => club.clubId.toString() !== clubId))

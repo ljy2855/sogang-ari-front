@@ -7,10 +7,10 @@ const WISH_API_URL = "api/user";
 export default class WishService {
   public static async getWishs(
     token: string,
-    studentId: string
+    userId: string
   ): Promise<WishResType[]> {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL}/${WISH_API_URL}/${studentId}/wish`,
+      `${process.env.REACT_APP_URL}/${WISH_API_URL}/${userId}/wish`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,12 +23,12 @@ export default class WishService {
 
   public static async addWish(
     token: string,
-    studentId: string,
+    userId: string,
     clubId: string
   ): Promise<WishResType> {
     console.log("add token!!:", token);
     const response = await axios.post(
-      `${process.env.REACT_APP_URL}/${WISH_API_URL}/${studentId}/wish/${clubId}`,
+      `${process.env.REACT_APP_URL}/${WISH_API_URL}/${userId}/wish/${clubId}`,
       {},
       {
         headers: {
@@ -42,12 +42,12 @@ export default class WishService {
 
   public static async deleteWish(
     token: string,
-    studentId: string,
+    userId: string,
     clubId: string
   ): Promise<void> {
     console.log("add token!!:", token);
     await axios.delete(
-      `${process.env.REACT_APP_URL}/${WISH_API_URL}/${studentId}/wish/${clubId}`,
+      `${process.env.REACT_APP_URL}/${WISH_API_URL}/${userId}/wish/${clubId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { SignUpReqType } from "../types";
 
-const SIGNUP_API_URL = "api/sign-in";
+const SIGNUP_API_URL = "api/sign-up";
 
 export default class SignUpService {
   public static async signUp(reqData: SignUpReqType): Promise<string> {
@@ -12,7 +12,7 @@ export default class SignUpService {
         response = res.data.result;
       })
       .catch((error) => {
-        response = error;
+        response = error.response;
         console.log("error:", response);
       });
     console.log("signup:", response);
