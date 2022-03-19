@@ -72,12 +72,14 @@ const JubroLab: React.FC<TestProps> = ({
   return (
     <div>
       <h1>jubro Lab</h1>
+      {/* 회원가입 */}
       <Input type="text" placeholder="Name" ref={nameRef} />
       <Input type="text" placeholder="UserId" ref={userIdRef} />
       <Input type="text" placeholder="Password" ref={passwordRef} />
       <Button key="1" onClick={click}>
         Sign Up
       </Button>
+      {/* 담아놓기 */}
       <Input type="text" placeholder="ClubId" ref={idRef} />
       <Button key="2" onClick={clickAdd}>
         Add Wish
