@@ -11,19 +11,19 @@ import {
   getWishs as getWishsSaga,
   addWish as addWishSaga,
   deleteWish as deleteWishSaga,
-} from "../redux/modules/wish";
+} from "../redux/modules/wishs";
 
 import Main from "../components/Main";
 
 const MainContainer: React.FC = (props) => {
   const clubs = useSelector<RootState, WishResType[] | null>(
-    (state) => state.wish.clubs
+    (state) => state.wishs.clubs
   );
   const wish_loading = useSelector<RootState, boolean>(
-    (state) => state.wish.loading
+    (state) => state.wishs.loading
   );
   const wish_error = useSelector<RootState, Error | null>(
-    (state) => state.wish.error
+    (state) => state.wishs.error
   );
   const auth_loading = useSelector<RootState, boolean>(
     (state) => state.auth.loading

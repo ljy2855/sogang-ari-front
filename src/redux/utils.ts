@@ -14,5 +14,5 @@ export function getStudentIdFromState(state: RootState): string | null {
 }
 
 export function getClubsFromState(state: RootState): WishResType[] | null {
-  return state.wish.clubs;
+  return state.wishs.clubs;
 }

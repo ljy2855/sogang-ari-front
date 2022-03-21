@@ -22,12 +22,12 @@ const initialState: WishsState = {
 };
 
 const options = {
-  prefix: "sogang-ari/wish",
+  prefix: "sogang-ari/wishs",
 };
 
 export const { success, pending, fail } = createActions(
   {
-    SUCCESS: (wishs) => ({ wishs }),
+    SUCCESS: (wishs: WishResType[]) => ({ wishs }),
   },
   "PENDING",
   "FAIL",
@@ -38,7 +38,7 @@ const reducer = handleActions<WishsState, any>(
   {
     PENDING: (state, action) => ({ ...state, loading: true, error: null }),
     SUCCESS: (state, action) => ({
-      clubs: action.payload.clubs,
+      clubs: action.payload.wishs,
       loading: false,
       error: null,
     }),
@@ -129,7 +129,9 @@ function* deleteWishSaga(action: DeleteWishSagaAction) {
     const { clubId } = action.payload;
     yield call(WishService.deleteWish, token, studentId, clubId);
     const clubs: WishResType[] = yield select(getClubsFromState);
-    yield put(success(clubs.filter((club) => club.id.toString() !== clubId)));
+    yield put(
+      success(clubs.filter((club) => club.clubId.toString() !== clubId))
+    );
   } catch (error: any) {
     yield put(
       fail(new Error(error?.response?.data?.message || "UNKNOWN_ERROR"))

@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
-
 import { RootState } from "../redux/modules/reducer";
 import { WishResType } from "../types";
 
-export default function useStudentId() {
-  const studentId = useSelector<RootState, WishResType[] | null>(
-    (state) => state.wish.clubs
+export default function useWishs() {
+  const wishs = useSelector<RootState, WishResType[] | null>(
+    (state) => state.wishs.clubs
   );
 
-  return studentId;
+  return wishs;
 }

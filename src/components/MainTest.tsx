@@ -52,7 +52,6 @@ function Main() {
     getClubs(section, mode);
   }, [section, mode]);
 
-  // console.log(clubs);
   return (
     <div className={styles.background}>
       <Row align="middle" className={styles.main_row}>
@@ -165,8 +164,8 @@ function Main() {
                 <div className={styles.clubs}>
                   {clubs.map((club: ClubResType) => (
                     <img
-                      src={`${process.env.REACT_APP_URL}/api/club/logo/${club.id}`}
-                      style={{ width: "100px", height: "100px" }}
+                      className={styles.logoImage}
+                      src={`${process.env.REACT_APP_URL}/api/club/${club.id}/logo`}
                       alt={`${club.name}`}
                     />
                   ))}
