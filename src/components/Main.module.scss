@@ -2,15 +2,15 @@
 // $body-bg: #fff;
 // $body-color: #111;
 
-.mainWrapper {
-  margin-left: 15%;
+.main_wrapper {
+ 
   place-items: center;
 }
 
 .Main {
   padding-top: 10%;
   height: 800px;
-  width: 100%;
+  width: 100% !important;
   display: flex;
   font-size: xx-large;
   justify-content: center;

@@ -99,7 +99,7 @@ const Main: React.FC<MainProps> = ({
               <MainSideBar />
             </Col>
             <Col xs={10}>
-              <div className={styles.mainWrapper}>
+              <div className={styles.main_wrapper}>
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                   <div></div>
                   <LoginButton
