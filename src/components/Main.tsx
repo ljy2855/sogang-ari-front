@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ClubResType, LoginReqType, WishResType } from "../types";
 import useAccessToken from "../hooks/useAccessToken";
 import styles from "./Main.module.scss";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Collapse, Button } from "react-bootstrap";
 
 import LoginButton from "./LoginButton.module";
 import MainSideBar from "./MainSideBar";
@@ -54,9 +54,7 @@ const Main: React.FC<MainProps> = ({
 
   const [clubs, setClubs] = useState<ClubResType[]>([]);
 
-  useEffect(() => {
-    console.log(clubs);
-  }, [clubs]);
+  const [isSideBarOpen, setSideBarOpen] = useState(true);
 
   function Home() {
     return (
@@ -89,16 +87,27 @@ const Main: React.FC<MainProps> = ({
       </>
     );
   }
-
+  // TODO #1 sidebar collapse
+  // TODO #2 resize main_wrapper when hide sidebar
   return (
     <>
       {
         <Container>
-          <MainSideBar />
-
+          <Collapse in={isSideBarOpen} dimension="width">
+            <div className={styles.side_bar} id="sidebar-collapse">
+              <MainSideBar />
+            </div>
+          </Collapse>
           <div className={styles.main_wrapper}>
             <nav className="navbar navbar-inverse navbar-fixed-top">
-              <div></div>
+              <Button
+                variant="outline-secondary"
+                onClick={() => setSideBarOpen(!isSideBarOpen)}
+                aria-controls="sidebar-collapse"
+                aria-expanded={isSideBarOpen}
+              >
+                <i className="bi bi-list"></i>
+              </Button>
               <LoginButton
                 logout={logout}
                 login={login}
