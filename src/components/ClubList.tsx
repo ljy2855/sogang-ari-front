@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { ClubResType } from "../types";
+import ClubDetail from "./ClubDetail";
 import styles from "./ClubList.module.scss";
 
 interface ClubListProps {
@@ -7,11 +9,23 @@ interface ClubListProps {
 }
 
 const ClubList: React.FC<ClubListProps> = ({ clubs }) => {
-  function clubContainer(club: ClubResType) {
+  const [isDetailFormShow, setDetailFormShow] = useState(false);
+
+  const handleDetailFormShow = () => setDetailFormShow(true);
+  const handleDetailFormClose = () => setDetailFormShow(false);
+
+  const [selectedClub, setSelectedClub] = useState<ClubResType>();
+
+  const showDetailForm = (club: ClubResType) => {
+    setSelectedClub(club);
+    handleDetailFormShow();
+  };
+
+  const clubContainer = (club: ClubResType) => {
     return (
       <>
         <div className={styles.club}>
-          <Container className="border">
+          <Container className="border border-4 rounded-3">
             <Row className="row-cols-2">
               <Col className="p-3">
                 <Row>
@@ -38,7 +52,7 @@ const ClubList: React.FC<ClubListProps> = ({ clubs }) => {
                   </Container>
                 </Row>
                 <Row>
-                  <a>자세히 보기</a>
+                  <a onClick={() => showDetailForm(club)}>자세히 보기</a>
                 </Row>
               </Col>
             </Row>
@@ -46,7 +60,7 @@ const ClubList: React.FC<ClubListProps> = ({ clubs }) => {
         </div>
       </>
     );
-  }
+  };
 
   return (
     <>
@@ -58,6 +72,13 @@ const ClubList: React.FC<ClubListProps> = ({ clubs }) => {
             ))}
         </Row>
       </Container>
+      {selectedClub !== undefined ? (
+        <ClubDetail
+          show={isDetailFormShow}
+          handleCloseForm={handleDetailFormClose}
+          club={selectedClub}
+        ></ClubDetail>
+      ) : null}
     </>
   );
 };
