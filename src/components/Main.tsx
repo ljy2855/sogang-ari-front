@@ -94,44 +94,39 @@ const Main: React.FC<MainProps> = ({
     <>
       {
         <Container>
-          <Row>
-            <Col xs={2}>
-              <MainSideBar />
-            </Col>
-            <Col xs={10}>
-              <div className={styles.main_wrapper}>
-                <nav className="navbar navbar-inverse navbar-fixed-top">
-                  <div></div>
-                  <LoginButton
-                    logout={logout}
-                    login={login}
-                    error={auth_error}
-                    loading={auth_loading}
-                  />
-                </nav>
-                <div className={styles.Main}>
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/ask" component={UserAsk} />
-                    <Route
-                      exact
-                      path="/jubroLab"
-                      render={() => (
-                        <JubroLab
-                          wishs={wishs}
-                          wish_error={wish_error}
-                          wish_loading={wish_loading}
-                          deleteWish={deleteWish}
-                          addWish={addWish}
-                        />
-                      )}
+          <MainSideBar />
+
+          <div className={styles.main_wrapper}>
+            <nav className="navbar navbar-inverse navbar-fixed-top">
+              <div></div>
+              <LoginButton
+                logout={logout}
+                login={login}
+                error={auth_error}
+                loading={auth_loading}
+              />
+            </nav>
+            <div className={styles.Main}>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/ask" component={UserAsk} />
+                <Route
+                  exact
+                  path="/jubroLab"
+                  render={() => (
+                    <JubroLab
+                      wishs={wishs}
+                      wish_error={wish_error}
+                      wish_loading={wish_loading}
+                      deleteWish={deleteWish}
+                      addWish={addWish}
                     />
-                    <Route component={NotFound} />
-                  </Switch>
-                </div>
-              </div>
-            </Col>
-          </Row>
+                  )}
+                />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          </div>
         </Container>
       }
     </>
