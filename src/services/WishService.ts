@@ -9,7 +9,7 @@ export default class WishService {
     token: string,
     studentId: string
   ): Promise<WishResType[]> {
-    const response = await axios.get<WishResType[]>(
+    const response = await axios.get(
       `${process.env.REACT_APP_URL}/${WISH_API_URL}/${studentId}/wish`,
       {
         headers: {
@@ -17,7 +17,8 @@ export default class WishService {
         },
       }
     );
-    return response.data;
+    console.log("test:", response.data.data);
+    return response.data.data;
   }
 
   public static async addWish(
@@ -25,15 +26,18 @@ export default class WishService {
     studentId: string,
     clubId: string
   ): Promise<WishResType> {
-    const response = await axios.post<WishResType>(
+    console.log("add token!!:", token);
+    const response = await axios.post(
       `${process.env.REACT_APP_URL}/${WISH_API_URL}/${studentId}/wish/${clubId}`,
+      {},
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    return response.data;
+    console.log("add!!", response.data);
+    return response.data.data;
   }
 
   public static async deleteWish(
@@ -41,6 +45,7 @@ export default class WishService {
     studentId: string,
     clubId: string
   ): Promise<void> {
+    console.log("add token!!:", token);
     await axios.delete(
       `${process.env.REACT_APP_URL}/${WISH_API_URL}/${studentId}/wish/${clubId}`,
       {
@@ -49,5 +54,6 @@ export default class WishService {
         },
       }
     );
+    console.log("delete!!");
   }
 }

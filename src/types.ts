@@ -5,7 +5,9 @@ export interface ClubResType {
   detail: string;
   url: string;
   section: string;
+  location: string;
   recruiting: boolean;
+  hashTags: string[];
 }
 
 export interface LoginReqType {
@@ -19,7 +21,7 @@ export interface LoginResType {
 }
 
 export interface WishResType {
-  id: number;
+  clubId: number;
   name: string;
   section: string;
   recruiting: boolean;

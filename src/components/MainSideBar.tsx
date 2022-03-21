@@ -16,7 +16,9 @@ function MainSideBar() {
         </Nav.Item>
       </Row>
       <Row>
-        <Nav.Item className={styles.item}> test</Nav.Item>
+        <Nav.Item className={styles.item}>
+          <Link to="/JubroLab"> jubro Lab</Link>
+        </Nav.Item>
       </Row>
       <Row>
         <Nav.Item className={styles.item}> test</Nav.Item>

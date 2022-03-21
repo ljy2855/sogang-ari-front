@@ -1,15 +1,16 @@
-.btn {
+//button customize
+.btn_pink {
   width: 100px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: #fff;
   cursor: pointer;
-  margin: 10px;
-  height: 35px;
+  margin: 20px;
+  height: 40px;
   text-align: center;
   border: none;
   background-size: 300% 100%;
-  border-radius: 25px;
+  border-radius: 50px;
   -o-transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
@@ -21,15 +22,100 @@
     #fbb03b
   );
   box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
-  box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
-  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
 }
-.btn:hover {
-  background-position: 100% 0;
+.btn_red {
+  width: 300px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: auto;
+  height: 40px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
   -o-transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  display: block;
+  background-image: linear-gradient(
+    to right,
+    #eb3941,
+    #f15e64,
+    #e14e53,
+    #e2373f
+  );
+  box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
 }
-.btn:focus {
+.btn_pink:hover,
+.btn_red:hover {
+  background-position: 100% 0;
+}
+.btn_pink:focus,
+.btn_red:focus {
   outline: none;
+}
+
+// modal customize
+.container {
+  text-align: center;
+}
+.modal_title {
+  font-weight: bolder;
+  color: #e2373f;
+}
+
+// label customize
+.form_label {
+  margin: 40px 86px;
+  width: 300px;
+  display: block;
+  border: none;
+  padding: 16px 0;
+  border-bottom: solid 1px #f15e64;
+  -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: -webkit-linear-gradient(
+    top,
+    rgba(255, 255, 255, 0) 96%,
+    #eb3941 4%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 96%,
+    #e14e53 4%
+  );
+  background-position: -200px 0;
+  background-size: 300px 100%;
+  background-repeat: no-repeat;
+  color: #e2373f;
+}
+.form_label:focus,
+.form_label:valid {
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+.form_label::-webkit-input-placeholder {
+  font-family: sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.form_label:focus::-webkit-input-placeholder,
+.form_label:valid::-webkit-input-placeholder {
+  color: #f15e64;
+  font-size: 17px;
+  -webkit-transform: translateY(-20px);
+  transform: translateY(-20px);
+  visibility: visible;
+}
+
+.red_a {
+  text-decoration: none;
+  color: red;
+}
+.red_a:hover {
+  text-decoration: underline;
+  color: red;
 }
