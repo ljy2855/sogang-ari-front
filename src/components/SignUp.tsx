@@ -70,6 +70,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
     setSignUpState({
       isPasswordCheck: true,
     });
+    closeForm();
   };
 
   const submit = (): void => {
@@ -77,16 +78,14 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
       passwordRef.current!.state.value,
       passwordCheckRef.current!.state.value
     );
-
-    if (signUpState.isPasswordCheck) closeForm();
   };
 
   const closeForm = (): void => {
+    handleSignUpFormClose();
     setSignUpState({
       isPasswordCheck: false,
       fail: false,
     });
-    handleSignUpFormClose();
   };
 
   //   useEffect(() => {
@@ -98,7 +97,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 
   return (
     <>
-      <Modal show={show} onHide={handleSignUpFormClose}>
+      <Modal show={show} onHide={closeForm}>
         <ModalHeader closeButton>
           <Modal.Title>회원가입</Modal.Title>
         </ModalHeader>
