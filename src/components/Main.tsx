@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ClubResType, LoginReqType, WishResType } from "../types";
 import useAccessToken from "../hooks/useAccessToken";
 import styles from "./Main.module.scss";
-import { Container, Row, Col, Collapse, Button } from "react-bootstrap";
+import { Container, Row, Col, Collapse, Button, Navbar } from "react-bootstrap";
 
 import LoginButton from "./LoginButton.module";
 import MainSideBar from "./MainSideBar";
@@ -93,21 +93,28 @@ const Main: React.FC<MainProps> = ({
     <>
       {
         <Container>
-          <Collapse in={isSideBarOpen} dimension="width">
-            <div className={styles.side_bar} id="sidebar-collapse">
-              <MainSideBar />
-            </div>
-          </Collapse>
-          <div className={styles.main_wrapper}>
+          <MainSideBar isOpen={isSideBarOpen} />
+          <div
+            className={
+              isSideBarOpen ? styles.main_wrapper : styles.main_wrapper_expend
+            }
+          >
             <nav className="navbar navbar-inverse navbar-fixed-top">
-              <Button
+              {/* <Button
                 variant="outline-secondary"
                 onClick={() => setSideBarOpen(!isSideBarOpen)}
                 aria-controls="sidebar-collapse"
                 aria-expanded={isSideBarOpen}
               >
                 <i className="bi bi-list"></i>
-              </Button>
+              </Button> */}
+              <Navbar.Toggle
+                onClick={() => setSideBarOpen(!isSideBarOpen)}
+                aria-controls="main_sidebar"
+                aria-expanded={isSideBarOpen}
+              >
+                <i className="bi bi-list"></i>
+              </Navbar.Toggle>
               <LoginButton
                 logout={logout}
                 login={login}

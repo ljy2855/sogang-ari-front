@@ -3,8 +3,17 @@
 // $body-color: #111;
 
 .main_wrapper {
+
   margin-left: 260px;
   place-items: center;
+  transition: 1s;
+
+}
+
+.main_wrapper_expend{
+  place-items: center;
+  transition: 1s;
+
 }
 
 .Main {
