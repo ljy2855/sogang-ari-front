@@ -1,9 +1,8 @@
 import styles from "./LoginButton.module.scss";
 import { Input } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Alert,
-  Button,
   Form,
   FormGroup,
   FormLabel,
@@ -30,7 +29,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 }) => {
   const nameRef = React.useRef<Input>(null);
   const majorRef = React.useRef(null);
-  const studentIdRef = React.useRef<Input>(null);
+  const userIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
   const passwordCheckRef = React.useRef<Input>(null);
   const emailAddressRef = React.useRef<Input>(null);
@@ -104,12 +103,12 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
         <ModalBody>
           <Form>
             <FormGroup>
-              <FormLabel>이름</FormLabel>
-              <Input type="text" placeholder="이름" ref={nameRef}></Input>
+              <FormLabel>닉네임</FormLabel>
+              <Input type="text" placeholder="닉네임" ref={nameRef}></Input>
             </FormGroup>
             <FormGroup>
-              <FormLabel>학번</FormLabel>
-              <Input type="text" placeholder="학번" ref={studentIdRef}></Input>
+              <FormLabel>아이디</FormLabel>
+              <Input type="text" placeholder="아이디" ref={userIdRef}></Input>
             </FormGroup>
             <FormGroup>
               <FormLabel>전공</FormLabel>
@@ -137,10 +136,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
               ></Input>
             </FormGroup>
             <FormGroup>
-              <FormLabel>이메일 (sogang) </FormLabel>
+              <FormLabel>이메일 </FormLabel>
               <Input
                 type="email"
-                placeholder="example@sogang.ac.kr"
+                placeholder="example@gmail.com"
                 ref={emailAddressRef}
               ></Input>
             </FormGroup>

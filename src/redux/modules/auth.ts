@@ -4,7 +4,7 @@ import { createActions, handleActions } from "redux-actions";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import AccessTokenService from "../../services/AccessTokenService";
 import RefreshTokenService from "../../services/RefreshTokenService";
-import StudentIdService from "../../services/StudentIdService";
+import UserIdService from "../../services/UserIdService";
 import UserService from "../../services/UserService";
 import { LoginReqType, LoginResType } from "../../types";
 import { getAccessTokenFromState, getRefreshTokenFromState } from "../utils";
@@ -12,7 +12,7 @@ import { getAccessTokenFromState, getRefreshTokenFromState } from "../utils";
 export interface AuthState {
   accessToken: string | null;
   refreshToken: string | null;
-  studentId: string | null;
+  userId: string | null;
   loading: boolean;
   error: Error | null;
 }
@@ -20,7 +20,7 @@ export interface AuthState {
 const initialState: AuthState = {
   accessToken: null,
   refreshToken: null,
-  studentId: null,
+  userId: null,
   loading: false,
   error: null,
 };
@@ -31,14 +31,10 @@ const options = {
 
 export const { success, pending, fail } = createActions(
   {
-    SUCCESS: (
-      accessToken: string,
-      refreshToken: string,
-      studentId: string
-    ) => ({
+    SUCCESS: (accessToken: string, refreshToken: string, userId: string) => ({
       accessToken,
       refreshToken,
-      studentId,
+      userId,
     }),
   },
   "PENDING",
@@ -57,7 +53,7 @@ const reducer = handleActions<AuthState, any>(
       ...state,
       accessToken: action.payload.accessToken,
       refreshToken: action.payload.refreshToken,
-      studentId: action.payload.studentId,
+      userId: action.payload.userId,
       loading: false,
       error: null,
     }),
@@ -76,8 +72,8 @@ export default reducer;
 // saga
 export const { login, logout } = createActions(
   {
-    LOGIN: ({ studentId, password }: LoginReqType) => ({
-      studentId,
+    LOGIN: ({ userId, password }: LoginReqType) => ({
+      userId,
       password,
     }),
   },
@@ -97,12 +93,12 @@ interface LoginSagaAction extends AnyAction {
 function* loginSaga(action: LoginSagaAction) {
   try {
     yield put(pending());
-    const { studentId } = action.payload;
+    const { userId } = action.payload;
     const token: LoginResType = yield call(UserService.login, action.payload);
     AccessTokenService.set(token.accessToken);
     RefreshTokenService.set(token.refreshToken);
-    StudentIdService.set(studentId);
-    yield put(success(token.accessToken, token.refreshToken, studentId));
+    UserIdService.set(userId);
+    yield put(success(token.accessToken, token.refreshToken, userId));
     yield put(push("/"));
   } catch (error: any) {
     yield put(
@@ -121,7 +117,7 @@ function* logoutSaga() {
   } finally {
     AccessTokenService.remove();
     RefreshTokenService.remove();
-    StudentIdService.remove();
+    UserIdService.remove();
     yield put(success(null, null, null));
   }
 }

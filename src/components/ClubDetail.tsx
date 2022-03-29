@@ -1,12 +1,4 @@
-import {
-  Col,
-  Container,
-  Image,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  Row,
-} from "react-bootstrap";
+import { Col, Container, Image, Modal, ModalBody, Row } from "react-bootstrap";
 import { ClubResType } from "../types";
 
 interface ClubDetailProps {

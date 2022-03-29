@@ -56,8 +56,8 @@ const MainContainer: React.FC = (props) => {
   }, [dispatch]);
 
   const login = useCallback(
-    ({ studentId, password }: LoginReqType) => {
-      dispatch(loginSaga({ studentId, password }));
+    ({ userId, password }: LoginReqType) => {
+      dispatch(loginSaga({ userId, password }));
     },
     [dispatch]
   );

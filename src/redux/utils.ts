@@ -9,8 +9,8 @@ export function getRefreshTokenFromState(state: RootState): string | null {
   return state.auth.refreshToken;
 }
 
-export function getStudentIdFromState(state: RootState): string | null {
-  return state.auth.studentId;
+export function getUserIdFromState(state: RootState): string | null {
+  return state.auth.userId;
 }
 
 export function getClubsFromState(state: RootState): WishResType[] | null {

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ClubResType, LoginReqType, WishResType } from "../types";
 import useAccessToken from "../hooks/useAccessToken";
 import styles from "./Main.module.scss";
-import { Container, Row, Col, Collapse, Button, Navbar } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 
-import LoginButton from "./LoginButton.module";
+import LoginButton from "./LoginButton";
 import MainSideBar from "./MainSideBar";
 import FilterClub from "./FilterClub";
 import { Route, Switch } from "react-router-dom";
@@ -23,7 +23,7 @@ interface MainProps {
   deleteWish: (clubId: string) => void;
   addWish: (clubId: string) => void;
   logout: () => void;
-  login: ({ studentId, password }: LoginReqType) => void;
+  login: ({ userId, password }: LoginReqType) => void;
 }
 
 const Main: React.FC<MainProps> = ({

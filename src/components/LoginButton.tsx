@@ -2,23 +2,19 @@ import styles from "./LoginButton.module.scss";
 import React, { useEffect, useState } from "react";
 import useAccessToken from "../hooks/useAccessToken";
 import {
-  Button,
   Form,
   FormGroup,
-  FormLabel,
   Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader,
 } from "react-bootstrap";
 import { LoginReqType } from "../types";
 import { message, Input } from "antd";
 import SignUpForm from "./SignUp";
-import { stripVTControlCharacters } from "util";
 
 interface AuthInterface {
   logout: () => void;
-  login: ({ studentId, password }: LoginReqType) => void;
+  login: ({ userId, password }: LoginReqType) => void;
   loading: boolean;
   error: Error | null;
 }
@@ -38,7 +34,7 @@ const LoginButton: React.FC<AuthInterface> = ({
   const handleSignUpFormClose = () => signUpSetShow(false);
   const handleSignUpFormShow = () => signUpSetShow(true);
 
-  const studentIdRef = React.useRef<Input>(null);
+  const userIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
   const token = useAccessToken();
 
@@ -67,9 +63,9 @@ const LoginButton: React.FC<AuthInterface> = ({
   }, [loading, error]);
 
   function click() {
-    const studentId = studentIdRef.current!.state.value;
+    const userId = userIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
-    login({ studentId, password });
+    login({ userId, password });
   }
 
   const keyPress = (e: React.KeyboardEvent) => {
@@ -98,12 +94,12 @@ const LoginButton: React.FC<AuthInterface> = ({
         <ModalBody>
           <Form>
             <FormGroup>
-              {/* <FormLabel>studentID </FormLabel> */}
+              {/* <FormLabel>userId </FormLabel> */}
               <Input
                 className={styles.form_label}
                 type="text"
                 placeholder="ID"
-                ref={studentIdRef}
+                ref={userIdRef}
                 onKeyPress={keyPress}
               />
             </FormGroup>
@@ -129,19 +125,16 @@ const LoginButton: React.FC<AuthInterface> = ({
 
         {/* a tag 로 바꾸기 */}
         <ModalFooter>
-          <a href="javascript:void(0)" className={styles.red_a}>
-            아이디/비밀번호 찾기
-          </a>
-          <a
-            href="javascript:void(0)"
-            className={styles.red_a}
+          <div className={styles.red_str}>아이디/비밀번호 찾기</div>
+          <div
+            className={styles.red_str}
             onClick={() => {
               handleLoginFormClose();
               handleSignUpFormShow();
             }}
           >
             회원가입
-          </a>
+          </div>
         </ModalFooter>
       </Modal>
       <SignUpForm

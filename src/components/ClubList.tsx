@@ -68,7 +68,9 @@ const ClubList: React.FC<ClubListProps> = ({ clubs }) => {
         <Row className="row-cols-auto justify-content-around ">
           {clubs &&
             clubs.map((club: ClubResType) => (
-              <Col className="py-3">{clubContainer(club)}</Col>
+              <Col key={club.id} className="py-3">
+                {clubContainer(club)}
+              </Col>
             ))}
         </Row>
       </Container>

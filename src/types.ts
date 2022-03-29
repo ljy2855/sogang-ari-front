@@ -11,7 +11,7 @@ export interface ClubResType {
 }
 
 export interface LoginReqType {
-  studentId: string;
+  userId: string;
   password: string;
 }
 
@@ -25,4 +25,15 @@ export interface WishResType {
   name: string;
   section: string;
   recruiting: boolean;
+}
+
+export interface SignUpReqType {
+  name: string;
+  userId: string;
+  password: string;
+}
+
+export interface SignUpResType {
+  message: string;
+  result: string;
 }

@@ -111,11 +111,12 @@
   visibility: visible;
 }
 
-.red_a {
+.red_str {
   text-decoration: none;
   color: red;
+  cursor: pointer;
 }
-.red_a:hover {
+.red_str:hover {
   text-decoration: underline;
   color: red;
 }
