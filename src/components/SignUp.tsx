@@ -1,8 +1,8 @@
+import styles from "./LoginButton.module.scss";
 import { Input } from "antd";
 import React, { useState } from "react";
 import {
   Alert,
-  Button,
   Form,
   FormGroup,
   FormLabel,
@@ -27,6 +27,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   show,
   handleSignUpFormClose,
 }) => {
+  const nameRef = React.useRef<Input>(null);
+  const majorRef = React.useRef(null);
   const userIdRef = React.useRef<Input>(null);
   const passwordRef = React.useRef<Input>(null);
   const passwordCheckRef = React.useRef<Input>(null);
@@ -37,10 +39,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   });
 
   const checkPassword = (
-    password: string | undefined,
-    passwordCheck: string | undefined
+    password: string | null,
+    passwordCheck: string | null
   ): void => {
-    if (password === null || password === undefined) {
+    if (password == null) {
       setSignUpState({
         isPasswordCheck: false,
         errorMessage: "비밀번호가 비었습니다",
@@ -67,6 +69,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
     setSignUpState({
       isPasswordCheck: true,
     });
+    closeForm();
   };
 
   const submit = (): void => {
@@ -74,66 +77,87 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
       passwordRef.current!.state.value,
       passwordCheckRef.current!.state.value
     );
-
-    if (signUpState.isPasswordCheck) closeForm();
   };
 
   const closeForm = (): void => {
+    handleSignUpFormClose();
     setSignUpState({
       isPasswordCheck: false,
       fail: false,
     });
-    handleSignUpFormClose();
   };
+
+  //   useEffect(() => {
+  //     checkPassword(
+  //       passwordRef.current!.state.value,
+  //       passwordCheckRef.current!.state.value
+  //     );
+  //   }, []);
 
   return (
     <>
-      <Modal show={show} onHide={handleSignUpFormClose}>
+      <Modal show={show} onHide={closeForm}>
         <ModalHeader closeButton>
           <Modal.Title>회원가입</Modal.Title>
         </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <FormLabel>UserId</FormLabel>
-              <Input type="text" placeholder="userId" ref={userIdRef}></Input>
+              <FormLabel>닉네임</FormLabel>
+              <Input type="text" placeholder="닉네임" ref={nameRef}></Input>
             </FormGroup>
             <FormGroup>
-              <FormLabel>Email</FormLabel>
-              <Input
-                type="email"
-                placeholder="example@test.com"
-                ref={emailAddressRef}
-              ></Input>
+              <FormLabel>아이디</FormLabel>
+              <Input type="text" placeholder="아이디" ref={userIdRef}></Input>
             </FormGroup>
             <FormGroup>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>전공</FormLabel>
+              <Form.Select aria-label="(전공선택)" ref={majorRef}>
+                <option>컴공</option>
+                <option>전공2</option>
+                <option>전공3</option>
+              </Form.Select>
+            </FormGroup>
+
+            <FormGroup>
+              <FormLabel>비밀번호</FormLabel>
               <Input
                 type="password"
-                placeholder="password"
+                placeholder="비밀번호"
                 ref={passwordRef}
               ></Input>
             </FormGroup>
             <FormGroup>
-              <FormLabel>Password check</FormLabel>
+              <FormLabel>비밀번호 확인</FormLabel>
               <Input
                 type="password"
-                placeholder="password"
+                placeholder="비밀번호 확인"
                 ref={passwordCheckRef}
               ></Input>
             </FormGroup>
             <FormGroup>
+              <FormLabel>이메일 </FormLabel>
+              <Input
+                type="email"
+                placeholder="example@gmail.com"
+                ref={emailAddressRef}
+              ></Input>
+            </FormGroup>
+            <FormGroup>
               {signUpState.fail ? (
-                <Alert variant="danger">{signUpState.errorMessage}</Alert>
+                <Alert variant="danger mt-2">{signUpState.errorMessage}</Alert>
               ) : null}
             </FormGroup>
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={submit}> 제출</Button>
-          <Button onClick={closeForm} variant="secondary">
+          <button className={styles.btn_red} onClick={submit}>
+            {" "}
+            가입하기
+          </button>
+          {/* <Button onClick={closeForm} variant="secondary">
             닫기
-          </Button>
+          </Button> */}
         </ModalFooter>
       </Modal>
     </>

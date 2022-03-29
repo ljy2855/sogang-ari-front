@@ -2,14 +2,11 @@ import styles from "./LoginButton.module.scss";
 import React, { useEffect, useState } from "react";
 import useAccessToken from "../hooks/useAccessToken";
 import {
-  Button,
   Form,
   FormGroup,
-  FormLabel,
   Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader,
 } from "react-bootstrap";
 import { LoginReqType } from "../types";
 import { message, Input } from "antd";
@@ -78,66 +75,73 @@ const LoginButton: React.FC<AuthInterface> = ({
   };
 
   return (
-    <>
+    <div className={styles.container}>
       {token !== null ? (
-        <div className="btn">
-          <button className={styles.btn} onClick={logout}>
-            로그아웃
-          </button>
-        </div>
+        <button className={styles.btn_pink} onClick={logout}>
+          로그아웃
+        </button>
       ) : (
-        <div className="btn">
-          <button className={styles.btn} onClick={handleLoginFormShow}>
-            로그인/회원가입
-          </button>
-        </div>
+        <button className={styles.btn_pink} onClick={handleLoginFormShow}>
+          로그인/회원가입
+        </button>
       )}
       <Modal show={loginModalShow} onHide={handleLoginFormClose}>
         <Modal.Header closeButton>
-          <Modal.Title>로그인</Modal.Title>
+          <Modal.Title>
+            <div className={styles.modal_title}>로그인</div>
+          </Modal.Title>
         </Modal.Header>
         <ModalBody>
           <Form>
             <FormGroup>
-              <FormLabel>UserID </FormLabel>
+              {/* <FormLabel>userId </FormLabel> */}
               <Input
+                className={styles.form_label}
                 type="text"
-                placeholder="userId"
+                placeholder="ID"
                 ref={userIdRef}
                 onKeyPress={keyPress}
               />
             </FormGroup>
             <FormGroup>
-              <FormLabel>password </FormLabel>
+              {/* <FormLabel>password</FormLabel> */}
               <Input
+                className={styles.form_label}
                 type="password"
-                placeholder="password"
+                placeholder="Password"
                 ref={passwordRef}
                 onKeyPress={keyPress}
               />
             </FormGroup>
+            <br />
+            {/* 로그인 위치 설정 ㅠㅜ */}
+            <FormGroup>
+              <button className={styles.btn_red} onClick={click}>
+                로그인
+              </button>
+            </FormGroup>
           </Form>
         </ModalBody>
+
+        {/* a tag 로 바꾸기 */}
         <ModalFooter>
-          <Button onClick={click} variant="primary">
-            로그인
-          </Button>
-          <Button
+          <div className={styles.red_str}>아이디/비밀번호 찾기</div>
+          <div
+            className={styles.red_str}
             onClick={() => {
               handleLoginFormClose();
               handleSignUpFormShow();
             }}
-            variant="secondary"
           >
             회원가입
-          </Button>
+          </div>
         </ModalFooter>
       </Modal>
       <SignUpForm
         show={signUpModalShow}
         handleSignUpFormClose={handleSignUpFormClose}
       />
-    </>
+    </div>
   );
 };
 

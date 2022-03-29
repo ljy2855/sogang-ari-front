@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ClubResType, LoginReqType, WishResType } from "../types";
 import useAccessToken from "../hooks/useAccessToken";
 import styles from "./Main.module.scss";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 
 import LoginButton from "./LoginButton";
 import MainSideBar from "./MainSideBar";
@@ -54,9 +54,7 @@ const Main: React.FC<MainProps> = ({
 
   const [clubs, setClubs] = useState<ClubResType[]>([]);
 
-  useEffect(() => {
-    console.log(clubs);
-  }, [clubs]);
+  const [isSideBarOpen, setSideBarOpen] = useState(true);
 
   function Home() {
     return (
@@ -89,49 +87,62 @@ const Main: React.FC<MainProps> = ({
       </>
     );
   }
-
+  // TODO #1 sidebar collapse
+  // TODO #2 resize main_wrapper when hide sidebar
   return (
     <>
       {
         <Container>
-          <Row>
-            <Col xs={2}>
-              <MainSideBar />
-            </Col>
-            <Col xs={10}>
-              <div className={styles.mainWrapper}>
-                <nav className="navbar navbar-inverse navbar-fixed-top">
-                  <div></div>
-                  <LoginButton
-                    logout={logout}
-                    login={login}
-                    error={auth_error}
-                    loading={auth_loading}
-                  />
-                </nav>
-                <div className={styles.Main}>
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/ask" component={UserAsk} />
-                    <Route
-                      exact
-                      path="/jubroLab"
-                      render={() => (
-                        <JubroLab
-                          wishs={wishs}
-                          wish_error={wish_error}
-                          wish_loading={wish_loading}
-                          deleteWish={deleteWish}
-                          addWish={addWish}
-                        />
-                      )}
+          <MainSideBar isOpen={isSideBarOpen} />
+          <div
+            className={
+              isSideBarOpen ? styles.main_wrapper : styles.main_wrapper_expend
+            }
+          >
+            <nav className="navbar navbar-inverse navbar-fixed-top">
+              {/* <Button
+                variant="outline-secondary"
+                onClick={() => setSideBarOpen(!isSideBarOpen)}
+                aria-controls="sidebar-collapse"
+                aria-expanded={isSideBarOpen}
+              >
+                <i className="bi bi-list"></i>
+              </Button> */}
+              <Navbar.Toggle
+                onClick={() => setSideBarOpen(!isSideBarOpen)}
+                aria-controls="main_sidebar"
+                aria-expanded={isSideBarOpen}
+              >
+                <i className="bi bi-list"></i>
+              </Navbar.Toggle>
+              <LoginButton
+                logout={logout}
+                login={login}
+                error={auth_error}
+                loading={auth_loading}
+              />
+            </nav>
+            <div className={styles.Main}>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/ask" component={UserAsk} />
+                <Route
+                  exact
+                  path="/jubroLab"
+                  render={() => (
+                    <JubroLab
+                      wishs={wishs}
+                      wish_error={wish_error}
+                      wish_loading={wish_loading}
+                      deleteWish={deleteWish}
+                      addWish={addWish}
                     />
-                    <Route component={NotFound} />
-                  </Switch>
-                </div>
-              </div>
-            </Col>
-          </Row>
+                  )}
+                />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          </div>
         </Container>
       }
     </>

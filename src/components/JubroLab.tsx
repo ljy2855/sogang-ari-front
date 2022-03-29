@@ -1,10 +1,8 @@
 import { Button, Input, message, Table } from "antd";
 // import { Redirect } from "react-router-dom";
-import useAccessToken from "../hooks/useAccessToken";
 import { WishResType } from "../types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Wish from "./JubroLabWish";
-import ClubService from "../services/ClubService";
 import SignUpService from "../services/SignUpService";
 
 interface TestProps {
