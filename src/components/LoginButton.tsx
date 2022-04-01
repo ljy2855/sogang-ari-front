@@ -62,15 +62,16 @@ const LoginButton: React.FC<AuthInterface> = ({
     }
   }, [loading, error]);
 
-  function click() {
+  const click = (event: React.MouseEvent<HTMLButtonElement> | null) => {
+    event?.preventDefault();
     const userId = userIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
     login({ userId, password });
-  }
+  };
 
   const keyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      click();
+      click(null);
     }
   };
 
