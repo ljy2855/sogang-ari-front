@@ -2,56 +2,31 @@
 // $body-bg: #fff;
 // $body-color: #111;
 
-.main_wrapper {
-
-  margin-left: 260px;
-  place-items: center;
-  transition: 1s;
-
+.logo_wrap{
+  width: 320px;
 }
 
-.main_wrapper_expend{
-  place-items: center;
-  transition: 1s;
-
-}
-
-.Main {
-  padding-top: 10%;
-  height: 800px;
-  width: 100%;
-  display: flex;
+.logo{
+  padding-right: 10px;
   font-size: xx-large;
-  justify-content: center;
-
-  /* background: transparent;
-  background-color: transparent; */
-}
-
-.main_subtitle {
-  text-align: center;
-  color: #2e251d;
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-a {
-  color: #eb3941;
-  text-decoration: none;
-  font-weight: 400;
-  transition: all 0.2s;
-}
-a:hover {
-  color: #eb3941;
   font-weight: bolder;
+  float: left;
 }
 
-.logoImage {
-  width: 50%;
-  max-width: 400px;
-  height: auto;
+.logo_img{
+  width: auto; height: auto;
+  max-width: 40px;
+  max-height: 40px;
 }
 
+.description{
+  clear: both;
+  margin-top: 30px;
+  margin-bottom: 25%;
+  font-size: large;
+  font-weight: bolder;
+  
+
+}
 // Bootstrap and its default variables
 @import "~bootstrap/scss/bootstrap";
