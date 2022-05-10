@@ -2,6 +2,8 @@ import styles from "./LoginButton.module.scss";
 import React, { useEffect, useState } from "react";
 import useAccessToken from "../hooks/useAccessToken";
 import {
+  Alert,
+  Button,
   Form,
   FormGroup,
   Modal,
@@ -39,51 +41,34 @@ const LoginButton: React.FC<AuthInterface> = ({
   const token = useAccessToken();
 
   useEffect(() => {
-    if (error === null) return;
-    console.log("error:", error.message);
-    switch (error.message) {
-      case "USER_NOT_EXIST":
-        console.log("가입되지 않은 회원입니다.");
-        message.error("가입되지 않은 회원입니다.");
-        break;
-      case "AUTH_ERROR":
-        console.log("비밀번호가 일치하지 않습니다.");
-        message.error("비밀번호가 일치하지 않습니다.");
-        break;
-      default:
-        console.log("Unknown error occured");
-        message.error("Unknown error occured");
-    }
-  }, [error]);
-
-  useEffect(() => {
     if (!loading && error === null) {
       handleLoginFormClose();
     }
   }, [loading, error]);
 
-  function click() {
+  const click = (event: React.MouseEvent<HTMLButtonElement> | null) => {
+    event?.preventDefault();
     const userId = userIdRef.current!.state.value;
     const password = passwordRef.current!.state.value;
     login({ userId, password });
-  }
+  };
 
   const keyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      click();
+      click(null);
     }
   };
 
   return (
-    <div className={styles.container}>
+    <>
       {token !== null ? (
-        <button className={styles.btn_pink} onClick={logout}>
+        <Button variant="text"  onClick={logout}>
           로그아웃
-        </button>
+        </Button>
       ) : (
-        <button className={styles.btn_pink} onClick={handleLoginFormShow}>
-          로그인/회원가입
-        </button>
+        <Button variant="text"  onClick={handleLoginFormShow}>
+          Login /Sign Up
+        </Button>
       )}
       <Modal show={loginModalShow} onHide={handleLoginFormClose}>
         <Modal.Header closeButton>
@@ -113,6 +98,12 @@ const LoginButton: React.FC<AuthInterface> = ({
                 onKeyPress={keyPress}
               />
             </FormGroup>
+            {error ? (
+              <FormGroup>
+                <Alert variant="danger my-1"> {error.message}</Alert>
+              </FormGroup>
+            ) : null}
+
             <br />
             {/* 로그인 위치 설정 ㅠㅜ */}
             <FormGroup>
@@ -141,7 +132,7 @@ const LoginButton: React.FC<AuthInterface> = ({
         show={signUpModalShow}
         handleSignUpFormClose={handleSignUpFormClose}
       />
-    </div>
+  </>
   );
 };
 

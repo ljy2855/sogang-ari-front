@@ -53,6 +53,27 @@ function FilterClub({ setClubs }: FilterClubProps) {
   return (
     <>
       <div className="container px-4">
+        <div className="container px-5 py-4">
+          <div className="input-group ">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="동아리명"
+              aria-describedby="addon-wrapping"
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}
+              height={10}
+            />
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+              onClick={onClick(tmp, 1)}
+            >
+              검색
+            </button>
+          </div>
+        </div>
         <div className="row row-cols-6 justify-content-center">
           <div className="col">
             <button
@@ -102,27 +123,6 @@ function FilterClub({ setClubs }: FilterClubProps) {
               학술
             </button>
           </div>
-        </div>
-      </div>
-      <div className="container px-5 py-4">
-        <div className="input-group ">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="동아리명"
-            aria-describedby="addon-wrapping"
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-            height={10}
-          />
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            id="button-addon2"
-            onClick={onClick(tmp, 1)}
-          >
-            검색
-          </button>
         </div>
       </div>
     </>
