@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useAccessToken from "../hooks/useAccessToken";
 import {
   Alert,
+  Button,
   Form,
   FormGroup,
   Modal,
@@ -59,15 +60,15 @@ const LoginButton: React.FC<AuthInterface> = ({
   };
 
   return (
-    <div className={styles.container}>
+    <>
       {token !== null ? (
-        <button className={styles.btn_pink} onClick={logout}>
+        <Button variant="text"  onClick={logout}>
           로그아웃
-        </button>
+        </Button>
       ) : (
-        <button className={styles.btn_pink} onClick={handleLoginFormShow}>
-          로그인/회원가입
-        </button>
+        <Button variant="text"  onClick={handleLoginFormShow}>
+          Login /Sign Up
+        </Button>
       )}
       <Modal show={loginModalShow} onHide={handleLoginFormClose}>
         <Modal.Header closeButton>
@@ -131,7 +132,7 @@ const LoginButton: React.FC<AuthInterface> = ({
         show={signUpModalShow}
         handleSignUpFormClose={handleSignUpFormClose}
       />
-    </div>
+  </>
   );
 };
 
