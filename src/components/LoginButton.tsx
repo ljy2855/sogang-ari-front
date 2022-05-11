@@ -62,12 +62,16 @@ const LoginButton: React.FC<AuthInterface> = ({
   return (
     <>
       {token !== null ? (
-        <Button variant="text"  onClick={logout}>
-          로그아웃
+        <Button className={styles.login_button} variant="text" onClick={logout}>
+          Logout
         </Button>
       ) : (
-        <Button variant="text"  onClick={handleLoginFormShow}>
-          Login /Sign Up
+        <Button
+          className={styles.login_button}
+          variant="text"
+          onClick={handleLoginFormShow}
+        >
+          Login / Sign Up
         </Button>
       )}
       <Modal show={loginModalShow} onHide={handleLoginFormClose}>
@@ -132,7 +136,7 @@ const LoginButton: React.FC<AuthInterface> = ({
         show={signUpModalShow}
         handleSignUpFormClose={handleSignUpFormClose}
       />
-  </>
+    </>
   );
 };
 
