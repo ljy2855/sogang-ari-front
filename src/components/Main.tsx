@@ -58,7 +58,7 @@ const Main: React.FC<MainProps> = ({
 
   return (
     <>
-      <Container fluid className="mt-5 mx-1">
+      <Container fluid className={styles.main_container}>
         <Row>
           <Col className="col-3">
             <PageSideBar></PageSideBar>
