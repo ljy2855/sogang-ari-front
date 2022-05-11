@@ -4,47 +4,37 @@ import LoginButton from "./LoginButton";
 import styles from "./RightSideBar.module.scss";
 
 interface AuthInterface {
-    logout: () => void;
-    login: ({ userId, password }: LoginReqType) => void;
-    loading: boolean;
-    error: Error | null;
-  }
+  logout: () => void;
+  login: ({ userId, password }: LoginReqType) => void;
+  loading: boolean;
+  error: Error | null;
+}
 
-const RightSideBar:React.FC<AuthInterface> = ({  logout,
-    login,
-    loading,
-    error,}) =>{
-
-    return(<>
-        <Container>
-      <Col>
-        <Row>
-          <div className={styles.item}>
-            <LoginButton 
-                login={login}
-                logout={logout}
-                loading={loading}
-                error={error}
+const RightSideBar: React.FC<AuthInterface> = ({
+  logout,
+  login,
+  loading,
+  error,
+}) => {
+  return (
+    <>
+      <Container className={styles.sidebar}>
+        <div className={styles.items}>
+          <div className={styles.login}>
+            <LoginButton
+              login={login}
+              logout={logout}
+              loading={loading}
+              error={error}
             ></LoginButton>
           </div>
-        </Row>
-        <Row>
-          <div className={styles.item}>
-            Instagram
-          </div>
-        </Row>
-        <Row>
-          <div className={styles.item}>
-            FaceBook
-          </div>
-        </Row>
-        <Row>
-          <div className={styles.item}>
-            Else
-          </div>
-        </Row>
-      </Col>
-    </Container></>);
+          <div>Instagram</div>
+          <div>FaceBook</div>
+          <div>Else</div>
+        </div>
+      </Container>
+    </>
+  );
 };
 
-export default RightSideBar
+export default RightSideBar;

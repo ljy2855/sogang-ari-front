@@ -1,12 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
 
 .sidebar {
-  min-height: 100vh !important;
+  width: 200px !important;
 
 }
 
-.item {
-  text-align: center;
+.items {
+  text-align: left;
 
   font-size: large;
+  .menu{
+    font-weight: bold;
+    color: #B21117;
+  }
+  .home{
+    font-weight: bold;
+  }
 }
