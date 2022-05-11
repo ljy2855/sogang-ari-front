@@ -4,29 +4,13 @@ import { Link } from "react-router-dom";
 
 function PageSideBar() {
   return (
-    <Container>
-      <Col>
-        <Row>
-          <div className={styles.item}>
-            Menu
-          </div>
-        </Row>
-        <Row>
-          <div className={styles.item}>
-            Home
-          </div>
-        </Row>
-        <Row>
-          <div className={styles.item}>
-            My Page
-          </div>
-        </Row>
-        <Row>
-          <div className={styles.item}>
-            Q & A
-          </div>
-        </Row>
-      </Col>
+    <Container className={styles.sidebar}>
+      <div className={styles.items}>
+        <div className={styles.menu}>Menu</div>
+        <div className={styles.home}>Home</div>
+        <div>My Page</div>
+        <div>Q & A</div>
+      </div>
     </Container>
   );
 }
