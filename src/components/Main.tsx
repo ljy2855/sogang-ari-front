@@ -61,7 +61,10 @@ const Main: React.FC<MainProps> = ({
       <Container fluid className={styles.main_container}>
         <Row>
           <Col className="col-3">
-            <PageSideBar></PageSideBar>
+            <PageSideBar
+              getWishs={getWishs}
+              deleteWish={deleteWish}
+            ></PageSideBar>
           </Col>
           <Col>
             <Container className={styles.logo_wrap}>
