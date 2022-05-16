@@ -2,6 +2,8 @@ import React, { useEffect, useState, SetStateAction, Dispatch } from "react";
 import ClubService from "../services/ClubService";
 import { ClubResType } from "../types";
 import styles from "./FilterClub.module.scss";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface FilterClubProps {
   setClubs: Dispatch<SetStateAction<ClubResType[]>>;
@@ -53,29 +55,28 @@ function FilterClub({ setClubs }: FilterClubProps) {
   return (
     <>
       <div className="container px-4">
-        <div className="container px-5 py-4">
-          <div className="input-group ">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="동아리명"
-              aria-describedby="addon-wrapping"
-              onChange={handleChange}
-              onKeyPress={handleKeyPress}
-              height={10}
-            />
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              id="button-addon2"
-              onClick={onClick(tmp, 1)}
-            >
-              검색
-            </button>
-          </div>
+        <div className={styles.search}>
+          <input
+            type="text"
+            className={styles.searchTerm}
+            placeholder="Club Name"
+            // aria-describedby="addon-wrapping"
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
+          <button
+            type="button"
+            className={styles.searchButton}
+            // id="button-addon2"
+            onClick={onClick(tmp, 1)}
+          >
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
         </div>
+        <br />
+        <br />
         <div className="row row-cols-6 justify-content-center">
-          <div className="col">
+          <div className={styles.category_btn}>
             <button
               className={styles.category}
               onClick={onClick("봉사분과", 0)}
@@ -83,7 +84,7 @@ function FilterClub({ setClubs }: FilterClubProps) {
               봉사
             </button>
           </div>
-          <div className="col">
+          <div className={styles.category_btn}>
             <button
               className={styles.category}
               onClick={onClick("사회교양분과", 0)}
@@ -91,7 +92,7 @@ function FilterClub({ setClubs }: FilterClubProps) {
               사회교양
             </button>
           </div>
-          <div className="col">
+          <div className={styles.category_btn}>
             <button
               className={styles.category}
               onClick={onClick("종교분과", 0)}
@@ -99,7 +100,7 @@ function FilterClub({ setClubs }: FilterClubProps) {
               종교
             </button>
           </div>
-          <div className="col">
+          <div className={styles.category_btn}>
             <button
               className={styles.category}
               onClick={onClick("연행예술분과", 0)}
@@ -107,7 +108,7 @@ function FilterClub({ setClubs }: FilterClubProps) {
               연행예술
             </button>
           </div>
-          <div className="col">
+          <div className={styles.category_btn}>
             <button
               className={styles.category}
               onClick={onClick("체육분과", 0)}
@@ -115,7 +116,7 @@ function FilterClub({ setClubs }: FilterClubProps) {
               체육
             </button>
           </div>
-          <div className="col">
+          <div className={styles.category_btn}>
             <button
               className={styles.category}
               onClick={onClick("학술분과", 0)}
