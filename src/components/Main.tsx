@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { ClubResType, LoginReqType, WishResType } from "../types";
 import useAccessToken from "../hooks/useAccessToken";
-import { Col, Container, Navbar, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 
-import LoginButton from "./LoginButton";
+// import LoginButton from "./LoginButton";
+// import { Route, Switch } from "react-router-dom";
+// import UserAsk from "./UserAsk";
+// import NotFound from "../pages/NotFound";
+// import ClubList from "./ClubList";
+// import JubroLab from "./JubroLab";
+import RightSideBar from "./RightSideBar";
 import PageSideBar from "./PageSideBar";
 import FilterClub from "./FilterClub";
-import { Route, Switch } from "react-router-dom";
-import UserAsk from "./UserAsk";
-import NotFound from "../pages/NotFound";
-import ClubList from "./ClubList";
-import JubroLab from "./JubroLab";
-import RightSideBar from "./RightSideBar";
 
 import styles from "./Main.module.scss";
 
@@ -72,7 +72,8 @@ const Main: React.FC<MainProps> = ({
                 <div className={styles.logo}>SogangAri</div>
                 <img
                   className={styles.logo_img}
-                  src="images/sogang_ari_logo.png"
+                  src="public/images/sogang_ari_logo.png"
+                  alt="logo"
                 ></img>
               </div>
               <div className={styles.description}>

@@ -1,36 +1,35 @@
 // Your variable overrides
 // $body-bg: #fff;
 // $body-color: #111;
-.main_container{
+.main_container {
   padding-top: 3rem !important;
-  margin : 0 !important;
+  margin: 0 !important;
 }
 
-.logo_wrap{
-  width: 320px !important;
+.logo_wrap {
+  width: 500px !important;
 }
 
-.logo{
+.logo {
   padding-right: 10px;
-  font-size: xx-large;
+  font-size: 70px;
   font-weight: bolder;
   float: left;
 }
 
-.logo_img{
-  width: auto; height: auto;
+.logo_img {
+  width: auto;
+  height: auto;
   max-width: 40px;
   max-height: 40px;
 }
 
-.description{
+.description {
   clear: both;
   margin-top: 30px;
   margin-bottom: 25%;
-  font-size: large;
-  font-weight: bolder;
-  
-
+  font-size: 30px;
+  font-weight: bold;
 }
 // Bootstrap and its default variables
 @import "~bootstrap/scss/bootstrap";

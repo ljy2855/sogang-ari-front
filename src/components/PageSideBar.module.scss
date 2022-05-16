@@ -2,18 +2,17 @@
 
 .sidebar {
   width: 200px !important;
-
 }
 
 .items {
   text-align: left;
-
-  font-size: large;
-  .menu{
+  font-size: x-large;
+  .menu {
+    font-size: xx-large;
     font-weight: bold;
-    color: #B21117;
+    color: #b21117;
   }
-  .home{
+  .home {
     font-weight: bold;
   }
 }

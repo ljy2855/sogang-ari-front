@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { LoginReqType } from "../types";
 import LoginButton from "./LoginButton";
 import styles from "./RightSideBar.module.scss";
@@ -28,9 +28,20 @@ const RightSideBar: React.FC<AuthInterface> = ({
               error={error}
             ></LoginButton>
           </div>
-          <div>Instagram</div>
-          <div>FaceBook</div>
-          <div>Else</div>
+          <br />
+          <div>
+            <a
+              className={styles.a}
+              href="https://www.instagram.com/jooeon.kang/?hl=ko"
+            >
+              Instagram
+            </a>
+          </div>
+          <div>
+            <a className={styles.a} href="https://www.facebook.com/">
+              Facebook
+            </a>
+          </div>
         </div>
       </Container>
     </>
