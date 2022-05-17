@@ -72,7 +72,7 @@ const Main: React.FC<MainProps> = ({
                 <div className={styles.logo}>SogangAri</div>
                 <img
                   className={styles.logo_img}
-                  src="public/images/sogang_ari_logo.png"
+                  src="images/sogang_ari_logo.png"
                   alt="logo"
                 ></img>
               </div>

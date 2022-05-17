@@ -2,11 +2,13 @@
 
 .sidebar {
   width: 200px !important;
+  margin-right : 0 !important;
+  
 }
 
 .items {
   text-align: left;
-  font-size: x-large;
+  font-size: 30px;
   .menu {
     font-size: xx-large;
     font-weight: bold;

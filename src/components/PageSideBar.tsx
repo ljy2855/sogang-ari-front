@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 // import { useState } from "react";
 import MyPage from "./MyPage";
+import AskPage from "./AskPage";
 
 interface PageSideBarProps {
   getWishs: () => void;
@@ -18,7 +19,8 @@ const PageSideBar: React.FC<PageSideBarProps> = ({ getWishs, deleteWish }) => {
         <br />
         <div className={styles.home}>Home</div>
         <MyPage></MyPage>
-        <div>Q & A</div>
+        <br />
+        <AskPage></AskPage>
       </div>
     </Container>
   );
