@@ -42,3 +42,43 @@
     outline: none;
     background-position: 0 0;
 }
+
+.content_label{
+    margin-left: 5px;
+    padding-top : 40px;
+    color: grey;
+}
+
+.content{
+    display: block;
+    min-width: 100%;
+    min-height: 300px;
+    border : 2px solid grey;
+}
+
+.checkbox{
+    margin-top : 30px;
+}
+
+.terms{
+    display:inline-block !important;
+}
+
+.terms_link{
+    margin-left: 4px;
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.submit{
+    display: block !important;
+    margin: auto;
+    margin-top : 60px;
+    background-color: #C4C4C4 !important;
+    border-radius: 25px !important;
+    border : none !important;
+    font-size: large !important;
+    color: black !important;
+    height: 50px ;
+    width: 250px;
+}
