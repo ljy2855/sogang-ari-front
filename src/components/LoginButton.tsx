@@ -71,13 +71,13 @@ const LoginButton: React.FC<AuthInterface> = ({
           variant="text"
           onClick={handleLoginFormShow}
         >
-          Login / Sign Up
+          Log In / Sign Up
         </Button>
       )}
-      <Modal show={loginModalShow} onHide={handleLoginFormClose}>
+      <Modal show={loginModalShow} onHide={handleLoginFormClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>
-            <div className={styles.modal_title}>로그인</div>
+            <div className={styles.modal_title}>Log In</div>
           </Modal.Title>
         </Modal.Header>
         <ModalBody>
@@ -87,7 +87,7 @@ const LoginButton: React.FC<AuthInterface> = ({
               <Input
                 className={styles.form_label}
                 type="text"
-                placeholder="ID"
+                placeholder="Email"
                 ref={userIdRef}
                 onKeyPress={keyPress}
               />
@@ -107,12 +107,10 @@ const LoginButton: React.FC<AuthInterface> = ({
                 <Alert variant="danger my-1"> {error.message}</Alert>
               </FormGroup>
             ) : null}
-
-            <br />
             {/* 로그인 위치 설정 ㅠㅜ */}
             <FormGroup>
               <button className={styles.btn_red} onClick={click}>
-                로그인
+                Log in
               </button>
             </FormGroup>
           </Form>
@@ -120,7 +118,7 @@ const LoginButton: React.FC<AuthInterface> = ({
 
         {/* a tag 로 바꾸기 */}
         <ModalFooter>
-          <div className={styles.red_str}>아이디/비밀번호 찾기</div>
+          <div className={styles.red_str}>Forgot password?</div>
           <div
             className={styles.red_str}
             onClick={() => {
@@ -128,7 +126,7 @@ const LoginButton: React.FC<AuthInterface> = ({
               handleSignUpFormShow();
             }}
           >
-            회원가입
+            Sign up
           </div>
         </ModalFooter>
       </Modal>

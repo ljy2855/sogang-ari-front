@@ -25,14 +25,14 @@ const MyPage: React.FC = () => {
       <Modal show={isMyPageModalShow} onHide={handleMyPageModalClose} size="lg">
         <Modal.Header>
           <Modal.Title>
-            <div className={styles.modal_title}>My page</div>
+            <div className={styles.modal_title}>My Page</div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container className={styles.modal_body}>
             <input className={styles.email_field} placeholder="Email"></input>
 
-            <label className={styles.club_field_label}>Favorite clubs</label>
+            <label className={styles.club_field_label}>Favorite Clubs</label>
             <div className={styles.club_box}>
               <div className={styles.club}>
                 <img
