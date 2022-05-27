@@ -5,7 +5,6 @@
   font-weight: 600;
   color: #fff;
   cursor: pointer;
-  // margin: 10px;
   text-align: center;
   border: none;
   background-size: 300% 100%;
@@ -16,20 +15,23 @@
   background-image: linear-gradient(
     to right,
     #b21117,
+    #f03c42,
     #b21117,
-    #f7186a,
-    #fbb03b
+    #e2373f
   );
-  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
   box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
-  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
 }
 .category_btn {
   justify-content: center;
   align-items: center;
   display: flex;
 }
-
+.category:hover {
+  background-position: 100% 0;
+}
+.category:focus {
+  outline: none;
+}
 
 .search {
   width: 100%;

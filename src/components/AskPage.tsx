@@ -1,13 +1,5 @@
-import { useRef, useState } from "react";
-import {
-  Button,
-  Container,
-  Form,
-  FormGroup,
-  FormLabel,
-  Modal,
-} from "react-bootstrap";
-import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
+import { useState } from "react";
+import { Button, Container, Form, Modal } from "react-bootstrap";
 import styles from "./AskPage.module.scss";
 
 function AskPage() {
@@ -37,15 +29,25 @@ function AskPage() {
         <Modal.Body>
           <Container className={styles.modal_body}>
             <Form>
-            <input className={styles.email_field} placeholder="Email"></input>
-            <label className={styles.content_label}>What is your question?</label>
-            <textarea className={styles.content}></textarea>
-            <Form.Check className={styles.checkbox} type="checkbox" label="Receive email notification"></Form.Check>
-            <Form.Check className={styles.terms} type="checkbox" label="I agree with the "></Form.Check>
-            <a className={styles.terms_link}>{'Terms & Conditions'}</a>
-            <Button className={styles.submit}>Submit the question</Button>
+              <input className={styles.email_field} placeholder="Email"></input>
+              <label className={styles.content_label}>
+                What is your question?
+              </label>
+              <textarea className={styles.content}></textarea>
+              <Form.Check
+                className={styles.checkbox}
+                type="checkbox"
+                label="Receive email notification"
+              ></Form.Check>
+              <Form.Check
+                className={styles.terms}
+                type="checkbox"
+                label="I agree with the "
+              ></Form.Check>
+              <a className={styles.terms_link}>{"Terms & Conditions"}</a>
+              <Button className={styles.submit}>Submit the question</Button>
             </Form>
-            </Container>
+          </Container>
         </Modal.Body>
       </Modal>
     </>

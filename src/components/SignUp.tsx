@@ -10,6 +10,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Container,
 } from "react-bootstrap";
 
 interface SignUpFormProps {
@@ -96,69 +97,57 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 
   return (
     <>
-      <Modal show={show} onHide={closeForm}>
+      <Modal show={show} onHide={closeForm} size="lg">
         <ModalHeader closeButton>
-          <Modal.Title>회원가입</Modal.Title>
+          <Modal.Title>
+            <div className={styles.modal_title}>Sign Up</div>
+          </Modal.Title>
         </ModalHeader>
         <ModalBody>
-          <Form>
-            <FormGroup>
-              <FormLabel>닉네임</FormLabel>
-              <Input type="text" placeholder="닉네임" ref={nameRef}></Input>
-            </FormGroup>
-            <FormGroup>
-              <FormLabel>아이디</FormLabel>
-              <Input type="text" placeholder="아이디" ref={userIdRef}></Input>
-            </FormGroup>
-            <FormGroup>
-              <FormLabel>전공</FormLabel>
-              <Form.Select aria-label="(전공선택)" ref={majorRef}>
-                <option>컴공</option>
-                <option>전공2</option>
-                <option>전공3</option>
-              </Form.Select>
-            </FormGroup>
-
-            <FormGroup>
-              <FormLabel>비밀번호</FormLabel>
-              <Input
-                type="password"
-                placeholder="비밀번호"
-                ref={passwordRef}
-              ></Input>
-            </FormGroup>
-            <FormGroup>
-              <FormLabel>비밀번호 확인</FormLabel>
-              <Input
-                type="password"
-                placeholder="비밀번호 확인"
-                ref={passwordCheckRef}
-              ></Input>
-            </FormGroup>
-            <FormGroup>
-              <FormLabel>이메일 </FormLabel>
-              <Input
-                type="email"
-                placeholder="example@gmail.com"
-                ref={emailAddressRef}
-              ></Input>
-            </FormGroup>
-            <FormGroup>
-              {signUpState.fail ? (
-                <Alert variant="danger mt-2">{signUpState.errorMessage}</Alert>
-              ) : null}
-            </FormGroup>
-          </Form>
+          <Container className={styles.modal_body}>
+            <Form>
+              <FormGroup>
+                <input
+                  className={styles.form_label}
+                  placeholder="Email"
+                ></input>
+              </FormGroup>
+              <FormGroup>
+                <input
+                  className={styles.form_label}
+                  placeholder="Certification"
+                ></input>
+              </FormGroup>
+              <FormGroup>
+                <input
+                  className={styles.form_label}
+                  placeholder="Password"
+                  type="password"
+                ></input>
+              </FormGroup>
+              <FormGroup>
+                <input
+                  className={styles.form_label}
+                  placeholder="Confirm password"
+                  type="password"
+                ></input>
+              </FormGroup>
+              <FormGroup>
+                <Form.Check
+                  className={styles.terms}
+                  type="checkbox"
+                  label="I agree with the "
+                ></Form.Check>
+                <a className={styles.terms_link}>{"Terms & Conditions"}</a>
+              </FormGroup>
+              <FormGroup>
+                <button className={styles.btn_red} onClick={submit}>
+                  Sign up
+                </button>
+              </FormGroup>
+            </Form>
+          </Container>
         </ModalBody>
-        <ModalFooter>
-          <button className={styles.btn_red} onClick={submit}>
-            {" "}
-            가입하기
-          </button>
-          {/* <Button onClick={closeForm} variant="secondary">
-            닫기
-          </Button> */}
-        </ModalFooter>
       </Modal>
     </>
   );

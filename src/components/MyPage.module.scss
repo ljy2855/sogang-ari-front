@@ -1,73 +1,73 @@
 @import "~bootstrap/scss/bootstrap";
 
-.button{
-    padding : 0 !important;
-    border : none !important;
-    text-align: left !important;
-    display: block;
-    font-size: xx-large !important;
-    font-weight: bold !important;
+.button {
+  padding: 0 !important;
+  border: none !important;
+  text-align: left !important;
+  display: block;
+  font-size: xx-large !important;
+  font-weight: bold !important;
 }
 
 .button:hover {
-    font-weight: bolder !important;
-    color: #b21117 !important;
+  font-weight: bolder !important;
+  color: #b21117 !important;
 }
-.modal_title{
-    padding-left : 3rem;
-    font-weight: bold;
-}
-
-.modal_body{
-    margin-top: 40px;
-    min-height: 40rem;
-    width: 600px !important;
-    place-items: center;
+.modal_title {
+  padding-left: 3rem;
+  font-weight: bold;
+  color: #b21117;
 }
 
-.email_field{
-   
-    display: block;
-    margin: auto;
-    border : none;
-    min-width: 100%;
-    border-bottom: solid 3px;
+.modal_body {
+  margin-top: 40px;
+  min-height: 40rem;
+  width: 600px !important;
+  place-items: center;
 }
 
-.email_field::placeholder{
-    text-align: left;
+.email_field {
+  display: block;
+  margin: auto;
+  border: none;
+  min-width: 100%;
+  border-bottom: solid 3px;
 }
 
-.email_field:focus{
-    box-shadow: none;
-    outline: none;
-    background-position: 0 0;
+.email_field::placeholder {
+  text-align: left;
 }
 
-.club_field_label{
-    margin-left: 5px;
-    padding-top : 40px;
-    color: grey;
+.email_field:focus {
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
 }
 
-.club_box{
-    border : 2px solid grey;
-    min-width: 100%;
-    height: 400px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+.club_field_label {
+  margin-left: 5px;
+  padding-top: 40px;
+  color: grey;
 }
 
-.club{
-    height : 150px !important;
-    width : 150px !important;
-    margin : 5px;
-    place-items: center;
-    text-align: center;
+.club_box {
+  border: 2px solid grey;
+  min-width: 100%;
+  height: 400px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
-.club_image{
-    width: 130px;
-    height: auto;
+.club {
+  height: 150px !important;
+  width: 150px !important;
+  margin: 5px;
+  place-items: center;
+  text-align: center;
+}
+
+.club_image {
+  width: 130px;
+  height: auto;
 }
